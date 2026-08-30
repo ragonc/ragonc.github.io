@@ -21,7 +21,7 @@ const posts = (await getCollection('blog'))
     <main class="hero-page">
       <section class="hero">
         <span class="tag">Run the Numbers</span>
-        <h1>I run the numbers on my own life.</h1>
+        <h1>I run the numbers on my own life<span class="dot">.</span></h1>
         <p class="sub">
           Data analyst in Zurich. Races, budgets, training plans — if it can be
           measured, it ends up in a spreadsheet here.
@@ -60,6 +60,7 @@ const posts = (await getCollection('blog'))
         line-height: 1.02; letter-spacing: -0.03em; font-weight: 800;
         margin: 0 0 1.75rem;
       }
+      .dot { color: #e11d48; }
       .sub {
         font-size: 1.2rem; opacity: 0.65; max-width: 34em;
         margin: 0 auto 2.5rem; line-height: 1.5;
