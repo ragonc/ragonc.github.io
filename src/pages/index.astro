@@ -18,30 +18,73 @@ const posts = (await getCollection('blog'))
   </head>
   <body>
     <Header />
-    <main>
-      <h1>Run the Numbers</h1>
-      <p class="intro">
-        I'm Carmine — a data analyst in Zurich who trains a lot and can't leave
-        a spreadsheet alone. This blog is where I run the numbers on my own
-        life: races, budgets, training, and whatever else looks optimizable.
-      </p>
-      <h2>Latest posts</h2>
-      <ul class="post-list">
-        {posts.map((post) => (
-          <li>
-            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-            <span class="date"><FormattedDate date={post.data.pubDate} /></span>
-          </li>
-        ))}
-      </ul>
-      <p><a href="/blog/">All posts →</a></p>
+    <main class="hero-page">
+      <section class="hero">
+        <span class="tag">Run the Numbers</span>
+        <h1>I run the numbers on my own life.</h1>
+        <p class="sub">
+          Data analyst in Zurich. Races, budgets, training plans — if it can be
+          measured, it ends up in a spreadsheet here.
+        </p>
+        <div class="actions">
+          <a class="btn solid" href="/blog/">Read the blog</a>
+          <a class="btn ghost" href="/about/">About me →</a>
+        </div>
+      </section>
+
+      <section class="latest">
+        <h2>Latest</h2>
+        <ul>
+          {posts.map((post) => (
+            <li>
+              <a href={`/blog/${post.id}/`}>
+                <span class="title">{post.data.title}</span>
+                <span class="date"><FormattedDate date={post.data.pubDate} /></span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
     </main>
     <Footer />
     <style>
-      .intro { font-size: 1.15em; max-width: 42em; }
-      .post-list { list-style: none; padding: 0; }
-      .post-list li { margin: 0.75em 0; }
-      .post-list .date { color: var(--gray, #666); margin-left: 0.75em; font-size: 0.9em; }
+      .hero-page { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+      .hero { text-align: center; padding: 7rem 0 5rem; }
+      .tag {
+        display: inline-block; font-size: 0.85rem; padding: 0.35em 1em;
+        border: 1px solid currentColor; border-radius: 999px; opacity: 0.7;
+        margin-bottom: 2rem;
+      }
+      .hero h1 {
+        font-size: clamp(2.8rem, 8vw, 5.5rem);
+        line-height: 1.02; letter-spacing: -0.03em; font-weight: 800;
+        margin: 0 0 1.75rem;
+      }
+      .sub {
+        font-size: 1.2rem; opacity: 0.65; max-width: 34em;
+        margin: 0 auto 2.5rem; line-height: 1.5;
+      }
+      .actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+      .btn {
+        border-radius: 999px; padding: 0.8em 1.6em; font-size: 1rem;
+        text-decoration: none; transition: opacity 0.15s;
+      }
+      .btn:hover { opacity: 0.8; }
+      .btn.solid { background: #111; color: #fff; }
+      .btn.ghost { border: 1px solid #ccc; color: inherit; }
+      .latest { padding: 3rem 0 6rem; max-width: 640px; margin: 0 auto; }
+      .latest h2 {
+        font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em;
+        opacity: 0.5; margin-bottom: 1rem;
+      }
+      .latest ul { list-style: none; padding: 0; margin: 0; }
+      .latest li a {
+        display: flex; justify-content: space-between; align-items: baseline;
+        gap: 1rem; padding: 1rem 0; text-decoration: none; color: inherit;
+        border-bottom: 1px solid rgba(128,128,128,0.2);
+      }
+      .latest li a:hover .title { text-decoration: underline; }
+      .latest .date { opacity: 0.5; font-size: 0.9rem; white-space: nowrap; }
     </style>
   </body>
 </html>
