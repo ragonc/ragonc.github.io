@@ -12,7 +12,7 @@ const isActive = (href: string) =>
 
 <header>
   <nav class="pill">
-    <a class="brand" href="/" aria-label={SITE_TITLE}>RTN<span class="dot">.</span></a>
+    <a class="brand" href="/" aria-label={SITE_TITLE}>RTN</a>
     <div class="links">
       {links.map((l) => (
         <a href={l.href} class={isActive(l.href) ? 'active' : ''}>{l.label}</a>
@@ -41,7 +41,6 @@ const isActive = (href: string) =>
     font-weight: 900; font-size: 1.15rem; text-decoration: none;
     color: inherit; letter-spacing: -0.04em; margin-right: auto;
   }
-  .dot { color: #e11d48; }
   .links { display: flex; gap: 1.8rem; }
   .links a {
     text-decoration: none; color: inherit;
@@ -49,5 +48,5 @@ const isActive = (href: string) =>
     opacity: 0.6; border: none;
   }
   .links a:hover { opacity: 1; }
-  .links a.active { opacity: 1; color: #e11d48; font-weight: 700; }
+  .links a.active { opacity: 1; font-weight: 700; }
 </style>
