@@ -25,4 +25,4 @@ The 10 challenges were:
 
 I am not going to spoil most of the challenges, but it was a cool day. Everyone had their moment: Lars really was Beckham with a soft ball, Rike swam like a mermaid fishing rings out of the river, and Max basically carried us through every water activity. From my side I was happy that I could help a lot in The Avengers game which was literally deadlifting with a trap bar.
 
-We finished 3rd — not bad for a team assembled the day before. The Spageritas are back, and I have a feeling we won't skip next year's edition.
+We finished 3rd and it not bad for a team assembled the day before. The Spageritas are back, and I have a feeling we won't skip next year's edition.
