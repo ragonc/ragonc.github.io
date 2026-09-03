@@ -1,8 +1,7 @@
 ---
-// -> src/pages/argo-tools-tools-tools/index.astro
-// Landing page for the Argo tools section: origin story on top, posts below.
-// ONE DECISION LEFT FOR CARMINE: the bracketed ADHD line in "The problem was never
-// memory". Keep it or delete it; the paragraph reads fine either way.
+// -> src/pages/argo-tools/index.astro
+// Section index. Short intro, then the posts. The origin story that used to live
+// here is now a post: src/content/argo-tools/how-it-works.md
 import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -10,9 +9,11 @@ import FormattedDate from '../../components/FormattedDate.astro';
 import { getCollection } from 'astro:content';
 import { SITE_TITLE } from '../../consts';
 
-const posts = (await getCollection('argo-tools')).sort(
+const all = (await getCollection('argo-tools')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+const intro = all.find((p) => p.id === 'how-it-works');
+const posts = all.filter((p) => p.id !== 'how-it-works');
 ---
 
 <!doctype html>
@@ -29,23 +30,88 @@ const posts = (await getCollection('argo-tools')).sort(
 				margin: auto;
 				padding: 3em 1em;
 			}
+			h1 {
+				margin: 0 0 0.3em 0;
+			}
+			.lede {
+				color: rgb(var(--gray-dark));
+				font-size: 1.15em;
+				line-height: 1.5;
+				margin: 0 0 2.5em 0;
+			}
+			.start {
+				display: block;
+				text-decoration: none;
+				color: inherit;
+				border: 1px solid rgb(var(--gray-light));
+				border-left: 4px solid var(--accent);
+				border-radius: 8px;
+				padding: 1.2em 1.4em;
+				margin: 0 0 3em 0;
+				transition: border-color 0.2s ease;
+			}
+			.start:hover {
+				border-color: var(--accent);
+			}
+			.start .kicker {
+				display: block;
+				font-size: 0.75em;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: rgb(var(--gray));
+				margin-bottom: 0.5em;
+			}
+			.start h2 {
+				margin: 0 0 0.3em 0;
+				font-size: 1.35em;
+			}
+			.start p {
+				margin: 0;
+				color: rgb(var(--gray-dark));
+			}
+			h2.section {
+				font-size: 0.8em;
+				letter-spacing: 0.08em;
+				text-transform: uppercase;
+				color: rgb(var(--gray));
+				border-bottom: 1px solid rgb(var(--gray-light));
+				padding-bottom: 0.6em;
+				margin: 0 0 1.5em 0;
+			}
 			ul.posts {
 				list-style: none;
 				padding: 0;
 				margin: 0;
 			}
 			ul.posts li {
-				margin: 0 0 1.5em 0;
+				padding: 0 0 1.6em 0;
+				margin: 0 0 1.6em 0;
+				border-bottom: 1px solid rgb(var(--gray-light));
 			}
-			ul.posts li a {
+			ul.posts li:last-child {
+				border-bottom: none;
+				margin-bottom: 0;
+			}
+			ul.posts a {
 				text-decoration: none;
+				color: inherit;
+			}
+			ul.posts h3 {
+				margin: 0 0 0.25em 0;
+				font-size: 1.2em;
+			}
+			ul.posts a:hover h3 {
+				color: var(--accent);
 			}
 			ul.posts .date {
+				margin: 0 0 0.4em 0;
+				font-size: 0.85em;
 				color: rgb(var(--gray));
-				font-size: 0.9em;
 			}
-			ul.posts p {
-				margin: 0.25em 0 0 0;
+			ul.posts .desc {
+				margin: 0;
+				color: rgb(var(--gray-dark));
+				line-height: 1.5;
 			}
 		</style>
 	</head>
@@ -53,155 +119,34 @@ const posts = (await getCollection('argo-tools')).sort(
 		<Header />
 		<main>
 			<h1>Argo tools</h1>
-			<p>
-				Argo is the name of the setup that runs a good part of my admin and side
-				projects. It is a Claude Code session, a folder of plain-text files, a task
-				manager it is allowed to write to, and a handful of rules. This page is the
-				story of why it exists. The posts below are the tools that came out of it.
+			<p class="lede">
+				Argo is the setup that runs a good part of my admin and side projects: a
+				Claude Code session, a folder of plain-text files, a task manager it can
+				write to, and three rules. These are the tools that came out of it.
 			</p>
 
-			<h2>The problem was never memory</h2>
-			<p>
-				I have never had trouble remembering that the tax thing exists. I have
-				trouble starting it. Knowing about a task costs nothing. Opening the portal,
-				finding the login, working out which document they actually want: that is
-				the wall. Every productivity system I have tried asked me to maintain it,
-				which is the same wall wearing a different hat. The notebook needs
-				reviewing, the app needs tagging, the weekly review needs doing. So the
-				system becomes one more thing I know about and do not start.
-			</p>
-			<p>
-				[I have ADHD, which is the one-word version of the paragraph above.]
-			</p>
-			<p>
-				What I wanted was not a better memory. I wanted something that holds all
-				the pieces and hands me back exactly one physical next step, small enough
-				to start in the next fifteen minutes.
-			</p>
+			{
+				intro && (
+					<a class="start" href={`/argo-tools/${intro.id}/`}>
+						<span class="kicker">Start here</span>
+						<h2>{intro.data.title}</h2>
+						<p>{intro.data.description}</p>
+					</a>
+				)
+			}
 
-			<h2>Three rules</h2>
-			<p>
-				In late August 2026 I set up a Claude Code project with one file at the top
-				that says who I am and how the assistant should behave. Most of that file
-				is plumbing. Three rules in it do almost all the work, and they are the
-				part anyone can copy.
-			</p>
-			<p>
-				<strong>Never make me choose.</strong> If there is a decision to make, make
-				it, state it in one line, and move on. Offer an alternative only when it
-				changes the outcome. A menu of options is a question, and a question is a
-				wall.
-			</p>
-			<p>
-				<strong>Never hand back a project without a next action.</strong> "Sort out
-				taxes" is not a task. "Download last year's salary certificate from the
-				portal" is. If the assistant cannot name a physical first step that takes
-				under fifteen minutes, the step is wrong and it has to try again.
-			</p>
-			<p>
-				<strong>Never ask what you can infer.</strong> Check the task list, the
-				calendar and the files before asking me anything. Ask only when the answer
-				changes what happens next.
-			</p>
-			<p>
-				These are sentences in a text file. They change the behaviour of the thing
-				more than any tool I have plugged into it.
-			</p>
-
-			<h2>Where things live</h2>
-			<p>One place per kind of thing, and no copies.</p>
-			<ul>
-				<li>
-					Tasks and projects live in Todoist. It is the only task list. The
-					assistant reads it and writes to it, and never keeps a list of its own.
-				</li>
-				<li>
-					Time lives in the calendar. Tasks compete with meetings, so it checks
-					the calendar before promising me a day.
-				</li>
-				<li>Documents live in a folder on a small server.</li>
-				<li>
-					Every live project has a resume file: what it is for, what has been
-					decided, what the last action was, what the next one is. That is what
-					makes a project survive two weeks of neglect.
-				</li>
-				<li>
-					Settled questions go in a decisions log, with the reasoning, so nothing
-					gets reopened by accident.
-				</li>
-				<li>
-					Anything ambiguous goes into a raw inbox with a timestamp. Capture
-					first, sort later, never interrogate. If I dump five things at once it
-					writes five lines and says "got it".
-				</li>
-			</ul>
-
-			<h2>The folder trick</h2>
-			<p>
-				This is the part you can copy this afternoon. The assistant can only read
-				what is on disk, so I put things on disk. A lease, an insurance policy, a
-				payment plan go into a folder and I say "read the admin folder". It
-				renames the files, pulls out every date and obligation, writes the tasks
-				with proper lead time, and files a one-paragraph summary so it never has
-				to reread the document.
-			</p>
-			<p>
-				One morning in late August it went through a stack of PDFs. A rental
-				contract turned out to contain a claim I did not know I had. A
-				health-insurance file produced one hard deadline and one recurring
-				reminder. A pension letter produced a tax question nobody had asked. Four
-				hours, most of them spent by me finding the PDFs.
-			</p>
-
-			<h2>What it does not do</h2>
-			<p>
-				It is a few weeks old. The results so far are real, and early.
-			</p>
-			<p>
-				It runs on a small VPS and needs a laptop to drop files into. It is not
-				zero-setup, and it is not a product.
-			</p>
-			<p>
-				It reads everything it is given. That is the point, and also the warning:
-				do not put in what you would not want read in full.
-			</p>
-			<p>
-				It is not a chatbot. Most of the value is in what it writes down while I am
-				not talking to it: the morning brief, the weekly sweep, the log of what it
-				did and why.
-			</p>
-
-			<h2>The minimal version</h2>
-			<p>If you want to start tonight, in this order:</p>
-			<ol>
-				<li>One text file with the three rules and a sentence about who you are.</li>
-				<li>
-					A task manager the assistant can write to, and the rule that it is the
-					only list.
-				</li>
-				<li>A folder for documents and a folder for state, both under git.</li>
-				<li>
-					A morning brief that runs by itself. Nothing else until that has worked
-					for a week.
-				</li>
-			</ol>
-			<p>
-				The admin did not get smaller. It got a place to sit that is not my head,
-				and the next step is always visible.
-			</p>
-
-			<h2>Posts</h2>
+			<h2 class="section">Posts</h2>
 			<ul class="posts">
 				{
 					posts.map((post) => (
 						<li>
-							<a href={`/argo-tools-tools/${post.id}/`}>
-								<h4 class="title">{post.data.title}</h4>
+							<a href={`/argo-tools/${post.id}/`}>
+								<h3>{post.data.title}</h3>
+								<p class="date">
+									<FormattedDate date={post.data.pubDate} />
+								</p>
+								<p class="desc">{post.data.description}</p>
 							</a>
-							<p class="date">
-								<FormattedDate date={post.data.pubDate} />
-							</p>
-							<p>{post.data.description}</p>
 						</li>
 					))
 				}
