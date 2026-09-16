@@ -1,0 +1,14 @@
+[
+  {
+    "date": "2026-09-16",
+    "scope": "page",
+    "macrostructure": "Stat-Led",
+    "theme": "custom",
+    "theme_axes": "dark / display-condensed-roman / chromatic-lime",
+    "vibe": "scoreboard on a night map, measured, lime",
+    "enrichment": "Tier-A canvas route network",
+    "brief": "runthenumbers.ch home hero — the name outranks the figures, one column, one paragraph",
+    "design_system": "design.md",
+    "note": "designed-as-app: consistency with design.md, not catalog rotation."
+  }
+]

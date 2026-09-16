@@ -14,12 +14,40 @@ folder disagree, **this repo wins** — the mockup is a record, not a dependency
 
 ## The one-line brief
 
-A **scoreboard on a night map**: the figures are the loudest thing on the page,
-everything else is small, measured and quiet.
+A **scoreboard on a night map**: the name calls the page, the figures are its
+substance, everything else is small, measured and quiet.
 
 The site is called Run the Numbers. Before this redesign it showed none. The home
-page now opens with real figures out of `data/data.db`, not a sentence about
-measuring things.
+page opens with its own name and then real figures out of `data/data.db`, not a
+sentence about measuring things.
+
+## The hierarchy *(amended 2026-09-16)*
+
+**The name is the largest type on the page; the figures come directly under it.**
+`--text-display` outranks `--text-figure` at every width — 152px against 104px at
+desktop, and the gap holds down to 320px. Anything that inverts that is a
+regression, not a tweak.
+
+It did not start here. The first cut set the name at 88px under a 136px lead
+figure, on the reasoning that a site called Run the Numbers should open with the
+numbers. Carmine looked at the built page and overruled it: the name has to be
+what you see first, and the numbers sit under it. The figure scale came down
+rather than the name being squeezed to fit, so the scoreboard reading survives.
+
+Two things follow from it, and they are the whole of the change:
+
+- **One paragraph in the hero, not two.** The masthead used to print
+  `SITE_DESCRIPTION` ("A data analyst in Zurich running the numbers on…") and
+  the hero carried a second paragraph beside the figures ("I'm Carmine. Data
+  analyst in Zurich…"). They said the same thing twice. The first-person one
+  survives, prefixed *Ciao.*; `SITE_DESCRIPTION` still feeds `<meta>` and the RSS
+  feed from `src/consts.ts`, it just no longer prints on the page.
+- **The hero is one column.** The old two-column split (figures left, paragraph
+  right) capped the figures at half the page. The paragraph and the chip moved up
+  under the name, and each figure is now a full-width line: the number on the
+  left rule, its label on the same baseline to the right. All three rows share
+  one grid, so every label starts at the same x — sized to the widest number,
+  which is why `.fig-row` is `display: contents` rather than a grid of its own.
 
 ## Macrostructure
 
@@ -43,8 +71,8 @@ Those URLs are out in the world; they stay working.
 | Part | Class | Where |
 | --- | --- | --- |
 | Nav, edge-aligned minimal | `.n9` | every page; `.is-home` drops the wordmark |
-| Masthead | `.masthead` | home only |
-| Stat-led hero | `.stat-hero`, `.figures`, `.figure` | home |
+| Masthead | `.masthead` | home only — name, one paragraph, chip |
+| Stat-led hero | `.stat-hero`, `.figures`, `.figure`, `.fig-text` | home |
 | Supporting strip | `.strip` | home |
 | Section head | `.head`, `.head-note` | home |
 | Project rows | `.rows`, `.row` | home, `/projects/` |
@@ -73,6 +101,9 @@ stylesheet and no component-scoped CSS: one file, one system.
    figure that is not countable yet shows a dash and says why — see the kilograms
    row. This is the site's whole premise and it is not negotiable.
 7. **A figure never wraps.** `1,0` over `27` reads as a bug, not a number.
+7b. **The name never sets below `line-height: 1.02`.** It is all-caps, so it has
+   no descenders: below 1.0 the cap-tops of a wrapped second line collide with
+   the first. It does wrap, at 320px, so this is not hypothetical.
 8. **No stat counter animation.** A figure caught mid-count reads as broken, and
    the number is the point.
 9. **The words are Carmine's.** No filler copy, no invented testimonials, and no
@@ -142,6 +173,15 @@ it. The system is deliberately small.
 
 ## Checked
 
-Every page renders at 390px and 1440px with no horizontal overflow, no console
-errors and no failed requests; computed type scale, colour and page width match
-the approved mockup exactly on home, project, article and about.
+**2026-09-16, after the hierarchy amendment.** Every page renders at 320, 360,
+375, 390, 414, 540, 600, 768, 900, 1024, 1280, 1440 and 1920px with no horizontal
+overflow, no console errors and no failed requests. The name outranks the lead
+figure at all thirteen widths and sets on one line at every one of them except
+320px, where it breaks between the words. The hero — name, paragraph, chip, first
+figure and its label — clears the fold at 1280×800. No clickable text wraps to two
+lines anywhere between 320 and 1920px, across home, both index pages, a project
+page and an article.
+
+**Known, not caused by this change:** `/writing/batch-work/` renders two `<h1>`
+elements — the layout's title and an `# Batch work` heading inside the post's
+markdown body. The fix belongs in the post, not the design system.

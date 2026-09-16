@@ -7,7 +7,11 @@
  * motion: hover-underline · chip-fill · row-tint (the stat counter was cut: a figure
  *         caught mid-count reads as broken in a thumbnail, and the number is the point)
  * tone: utilitarian-editorial · anchor hue: lime 122
- * pre-emit critique: P5 H5 E4 S5 R4 V5
+ * design-system: design.md · designed-as-app
+ * 2026-09-16 hero amendment: the name outranks the figures (--text-display >
+ *   --text-figure at every width), the hero is one column, and the site
+ *   description no longer prints on the page. See design.md § The hierarchy.
+ * pre-emit critique: P5 H5 E5 S5 R5 V4
  */
 
 :root {
@@ -38,9 +42,13 @@
   --space-2xs: 0.25rem; --space-xs: 0.5rem; --space-sm: 0.75rem;
   --space-md: 1.25rem; --space-lg: 2rem; --space-xl: 3.25rem; --space-2xl: 5.25rem;
 
-  --text-figure: clamp(3.75rem, 10.5vw, 8.5rem);
-  --text-figure-2: clamp(2.35rem, 7vw, 4.5rem);
-  --text-display: clamp(3rem, 9vw, 5.5rem);
+  /* The name leads. --text-display outranks --text-figure at every width:
+     Carmine's call on 16.09.2026, recorded in design.md. "RUN THE NUMBERS"
+     measures 6.26px of width per px of font-size, so 9.5rem needs 951px of
+     the 992px content box at desktop — one line, no wrap. */
+  --text-display: clamp(3.25rem, 11vw, 9.5rem);
+  --text-figure: clamp(2.75rem, 7.5vw, 6.5rem);
+  --text-figure-2: clamp(2rem, 5vw, 3.75rem);
   --text-2xl: clamp(1.6rem, 3.6vw, 2.2rem);
   --text-xl: clamp(1.25rem, 2.4vw, 1.5rem);
   --text-base: 1.0625rem;
@@ -105,46 +113,69 @@ h1, h2, h3 { font-style: normal; text-wrap: balance; }
 .n9 nav a[aria-current="page"] { color: var(--color-ink); border-bottom-color: var(--color-rule-2); }
 
 /* ── Home masthead ─────────────────────────────────────────────────────
-   The name of the site, said once, at the top of the page it belongs to.
-   Inner pages carry it in the nav instead. */
+   The name of the site, said once, at the top of the page it belongs to,
+   and the largest thing on it. Inner pages carry it in the nav instead.
+   One paragraph only: the site description prints in <meta> and the RSS
+   feed, not here, because it said the same thing as this one. */
 .masthead {
   padding-block: var(--space-lg) var(--space-md);
-  border-bottom: var(--rule-hair) solid var(--color-rule);
 }
 .masthead h1 {
   margin: 0;
   font-family: var(--font-display); font-weight: 800;
+  /* 1.02 is the floor for an all-caps display head: uppercase has no
+     descenders, so below 1.0 the cap-tops of a wrapped second line collide
+     with the first. It wraps at 320px, so this is not hypothetical. */
   font-size: var(--text-display); line-height: 1.02;
-  letter-spacing: -0.01em; text-transform: uppercase;
+  letter-spacing: -0.015em; text-transform: uppercase;
   overflow-wrap: anywhere; min-width: 0;
 }
 .masthead h1 .hl { color: var(--color-accent); }
 .masthead p {
-  margin: var(--space-sm) 0 0; max-width: 46ch;
-  color: var(--color-ink-2); font-size: 1.0625rem;
+  margin: var(--space-md) 0 0; max-width: 46ch;
+  color: var(--color-ink-2); font-size: 1.125rem;
 }
 /* On the home page the masthead carries the name, so the nav keeps only its links. */
 .n9.is-home { justify-content: flex-end; }
 
-/* ── Stat-led hero ─────────────────────────────────────────────────────── */
+/* ── Stat-led hero ───────────────────────────────────────────────────────
+   One column under the masthead. Each figure is a scoreboard line: the
+   number flush left, what it counts to its right, a hairline between. The
+   old two-column split (figures | qualifier) capped the figures at half
+   the page and left the right of every row empty. */
 .stat-hero {
-  padding-block: clamp(1.25rem, 3.5vw, 2.25rem) var(--space-xl);
-  display: grid; grid-template-columns: 1fr; gap: var(--space-lg);
-  align-items: start;
+  padding-block: var(--space-md) var(--space-xl);
 }
-@media (min-width: 60rem) {
-  .stat-hero {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-    column-gap: clamp(2rem, 6vw, 5rem);
-  }
+/* All three rows share ONE grid, so the label column starts at the same x on
+   every row — sized to the widest number, so each label still sits right next
+   to its own figure. A grid per row cannot do this: the tracks are sized per
+   grid, so every label started somewhere different. `display: contents` puts
+   the number and the label text directly into the shared grid; the hairline
+   moves onto them, since a contents box paints nothing itself. */
+.figures {
+  min-width: 0;
+  display: grid; grid-template-columns: max-content minmax(0, 1fr);
+  align-items: baseline;
+  border-top: var(--rule-hair) solid var(--color-rule);
 }
-.figures { min-width: 0; border-top: var(--rule-hair) solid var(--color-rule); }
-.fig-row {
+.fig-row { display: contents; }
+.figures > .figure,
+.fig-text {
   padding-block: var(--space-sm);
   border-bottom: var(--rule-hair) solid var(--color-rule);
 }
+/* The gap is padding, not column-gap: a gap would break the hairline into two
+   segments with a hole where the columns meet. */
+.fig-text { min-width: 0; padding-left: clamp(1.25rem, 4vw, 3rem); }
+/* Under ~34rem the number and its label stop fitting on one line: one column,
+   and only the text block carries the rule so the pair is not cut in half. */
+@media (max-width: 33.999rem) {
+  .figures { grid-template-columns: minmax(0, 1fr); }
+  .figures > .figure { padding-block: var(--space-sm) 0; border-bottom: 0; }
+  .fig-text { padding: var(--space-2xs) 0 var(--space-sm); }
+}
 .fig-label {
-  margin: 0 0 var(--space-xs);
+  margin: 0;
   font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700;
   line-height: 1.3; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--color-muted); overflow-wrap: anywhere; min-width: 0;
@@ -169,17 +200,9 @@ h1, h2, h3 { font-style: normal; text-wrap: balance; }
   font-family: var(--font-mono); font-size: var(--text-xs); line-height: 1.5;
   color: var(--color-muted);
 }
-.qualifier-col {
-  min-width: 0; display: flex; flex-direction: column; align-items: flex-start;
-  justify-content: center; padding-top: var(--space-md);
-}
-@media (min-width: 60rem) { .qualifier-col { padding-top: 0; } }
-.stat-hero .qualifier {
-  margin: 0; max-width: 40ch; min-width: 0;
-  color: var(--color-ink-2); font-size: 1.125rem;
-}
 .chip {
   display: inline-block; margin-top: var(--space-md);
+  align-self: start;
   padding: 0.6em 1.1em; border: var(--rule-hair) solid var(--color-accent);
   border-radius: var(--radius-chip);
   font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700;

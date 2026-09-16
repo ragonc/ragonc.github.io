@@ -6,6 +6,9 @@ import { getCollection } from 'astro:content';
 import ProjectRows from '../components/ProjectRows.astro';
 import { FIGURES, STRIP } from '../data/figures';
 import Base from '../layouts/Base.astro';
+// SITE_DESCRIPTION still feeds <meta> and the RSS feed through Base; it no
+// longer prints on the page, because it said the same thing as the paragraph
+// below the name. One of the two had to go — 16.09.2026, Carmine's call.
 import { LAST_MEASURED, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 const projects = (await getCollection('projects')).sort(
@@ -21,7 +24,12 @@ const swiss = (d: Date) =>
 <Base title={SITE_TITLE} description={SITE_DESCRIPTION} home>
 	<section class="masthead">
 		<h1>Run the <span class="hl">Numbers</span></h1>
-		<p>{SITE_DESCRIPTION}</p>
+		<p>
+			Ciao. I'm Carmine. Data analyst in Zurich, marathons and HYROX on the side. I
+			measure my own training, admin and money, then build the tools that do the
+			measuring for me. This is what came out.
+		</p>
+		<a class="chip" href="#built">The things I built &rarr;</a>
 	</section>
 
 	<section class="stat-hero">
@@ -29,7 +37,6 @@ const swiss = (d: Date) =>
 			{
 				FIGURES.map((f, i) => (
 					<div class:list={['fig-row', { 'is-pending': f.value === null }]}>
-						<p class="fig-label">{f.label}</p>
 						<p class:list={['figure', 'tnum', { 'figure-2': i > 0 }]}>
 							{f.value === null ? (
 								<span aria-label="not counted yet">&mdash;</span>
@@ -38,18 +45,13 @@ const swiss = (d: Date) =>
 							)}
 							<span class="unit">{f.unit}</span>
 						</p>
-						{f.note && <p class="fig-note">{f.note}</p>}
+						<div class="fig-text">
+							<p class="fig-label">{f.label}</p>
+							{f.note && <p class="fig-note">{f.note}</p>}
+						</div>
 					</div>
 				))
 			}
-		</div>
-		<div class="qualifier-col">
-			<p class="qualifier">
-				I'm Carmine. Data analyst in Zurich, marathons and HYROX on the side. I measure my
-				own training, admin and money, then build the tools that do the measuring for me.
-				This is what came out.
-			</p>
-			<a class="chip" href="#built">The things I built &rarr;</a>
 		</div>
 	</section>
 
