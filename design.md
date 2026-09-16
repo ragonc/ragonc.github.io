@@ -73,6 +73,16 @@ Three things about it, so the next change does not undo them by accident:
 - **The 38ch floor is load-bearing.** Below ~600px the name is narrower than any
   readable measure — 27ch at 390px — so matching it there would set the paragraph
   as a column of scraps. The floor hands the width back to the page container.
+- **The paragraph is two lines, and that is a copy constraint.** *(16.09.2026)*
+  At the name's width the measure is ~65ch, so two lines is a budget of about
+  130 characters. The sentence was 191 and set to three lines with a 34% last
+  line, so it was cut to fit: "then build the tools that do the measuring for
+  me" became "and build the tools that do it", and "This is what came out."
+  went — Built sits directly underneath now, so the pointer had nothing left to
+  do. It renders two lines at 93–96% fullness from 900px up. **Rewriting this
+  sentence changes the line count**; re-check it at 900px and above before
+  committing a new one. Below 900px it runs three or four lines: two is not
+  achievable at every width, only where the name is wide enough to carry it.
 - **The paragraph is 1.25rem because of the wrap, not the taste.** Matching the
   name's width and avoiding a short last line pull against each other. At
   1.1875rem the last line was 16% of the longest; 1.25rem makes it 34% at desktop
@@ -209,7 +219,10 @@ no console errors, no failed requests, one `h1` each, and no clickable text
 wrapping to two lines. The all-caps name never sets below `line-height: 1.02`. At
 1280×800 the masthead ends at 434px and the first project row is fully visible at
 741px, so the introduction and the first thing he built share the fold. The
-paragraph matches the name's width exactly from 600px up and never exceeds 65ch.
+paragraph matches the name's width exactly from 600px up, never exceeds 65ch, and
+sets to two lines from 900px up. One width, 600px exactly, keeps a short last
+line in a four-line block: it sits just above the breakpoint where `text-wrap:
+balance` takes over, and balancing it there would un-match the width.
 
 **Known, not caused by this change:** `/writing/batch-work/` renders two `<h1>`
 elements — the layout's title and an `# Batch work` heading inside the post's
