@@ -115,10 +115,13 @@ Wiring them to update themselves — a `data/data.db` → JSON export the build 
 — is a separate job. When it lands it replaces the contents of `figures.ts` and
 nothing else.
 
-**Open:** the kilograms figure is a dash. The alternative is 10,913 kg labelled
-"since Aug 2026", which is what `lf_strength_log` holds across 51 sets — but
-`strength_sets` disagrees at 7,112 kg, and the log only starts 20.08.2026.
-Carmine's call; the dash is the default until he makes it.
+**Settled 2026-09-16:** the kilograms figure was a dash while Carmine decided. It
+now publishes **10,913 kg**, which is what `lf_strength_log` holds across 51 sets.
+Two things to know before anyone edits it: `strength_sets` disagrees at 7,112 kg for
+the same span — `lf_strength_log` is the sheet he actually fills in, so it is the one
+published — and the log only starts 20.08.2026, which is why the period sits in the
+label. Take "since Aug 2026" out and the figure claims to be all-time, which breaks
+rule 6.
 
 ## Adding things
 
