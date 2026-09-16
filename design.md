@@ -14,40 +14,54 @@ folder disagree, **this repo wins** — the mockup is a record, not a dependency
 
 ## The one-line brief
 
-A **scoreboard on a night map**: the name calls the page, the figures are its
-substance, everything else is small, measured and quiet.
+**Who he is, then what he built.** The home page introduces him in one centred
+paragraph and goes straight to the work. Everything is small, measured and quiet
+except the name.
 
-The site is called Run the Numbers. Before this redesign it showed none. The home
-page opens with its own name and then real figures out of `data/data.db`, not a
-sentence about measuring things.
+## The home page carries no figures *(decided 16.09.2026)*
 
-## The hierarchy *(amended 2026-09-16)*
+This reverses what this file said all day, so it is written down plainly: **the
+site called Run the Numbers shows none on its home page.**
 
-**The name is the largest type on the page; the figures come directly under it.**
-`--text-display` outranks `--text-figure` at every width — 152px against 104px at
-desktop, and the gap holds down to 320px. Anything that inverts that is a
-regression, not a tweak.
+The page opened with three real figures out of `data/data.db` — kilometres run,
+hours trained, kilograms lifted — plus a three-column strip of secondary numbers
+and a source line dating them. Seven arrangements of that hero were built and
+rejected. Carmine's call was to stop arranging it and remove it: the figures, the
+strip, the source line, and the "The things I built" chip, which pointed at a
+section that now sits directly under the masthead.
 
-It did not start here. The first cut set the name at 88px under a 136px lead
-figure, on the reasoning that a site called Run the Numbers should open with the
-numbers. Carmine looked at the built page and overruled it: the name has to be
-what you see first, and the numbers sit under it. The figure scale came down
-rather than the name being squeezed to fit, so the scoreboard reading survives.
+What stays:
 
-Two things follow from it, and they are the whole of the change:
+- **`src/data/figures.ts` is still on disk, and nothing reads it.** The
+  `data/data.db` → JSON export is still the plan, and that file is where it lands.
+  Do not delete it on the grounds that it is unused.
+- **The figures inside the project rows** — 57 sets in, 3 write-ups, 327
+  activities on file — are part of the rows, not the stat display that went. They
+  are still real and still come from the database.
+- **Rule 6 below still holds.** Nothing on this site is invented. Removing the
+  figures does not license inventing anything to replace them.
 
-- **One paragraph in the hero, not two.** The masthead used to print
-  `SITE_DESCRIPTION` ("A data analyst in Zurich running the numbers on…") and
-  the hero carried a second paragraph beside the figures ("I'm Carmine. Data
-  analyst in Zurich…"). They said the same thing twice. The first-person one
-  survives, prefixed *Ciao.*; `SITE_DESCRIPTION` still feeds `<meta>` and the RSS
-  feed from `src/consts.ts`, it just no longer prints on the page.
-- **The hero is one column.** The old two-column split (figures left, paragraph
-  right) capped the figures at half the page. The paragraph and the chip moved up
-  under the name, and each figure is now a full-width line: the number on the
-  left rule, its label on the same baseline to the right. All three rows share
-  one grid, so every label starts at the same x — sized to the widest number,
-  which is why `.fig-row` is `display: contents` rather than a grid of its own.
+If the figures come back, they come back as a decision, not as a regression: this
+section is the record that their absence is deliberate.
+
+## The hierarchy *(amended 16.09.2026)*
+
+**The name is the largest type on the page, and the only display-scale thing in
+the masthead.** `--text-display` is `clamp(2.75rem, 11.6vw, 7.25rem)` — 116px at
+desktop. 152px read as too big and 88px as too small; this is the size that was
+kept.
+
+**The masthead is centred; everything below it is not.** The introduction is the
+one symmetrical thing on the site, and the project rows, the reads and the
+colophon are left-aligned and tabular underneath it. That contrast is the
+composition — the centring is not `text-align: center` painted onto a
+left-aligned layout, and the rows are never centred: a row with a name left and a
+figure right stops working the moment it is.
+
+The paragraph is held to a 48ch measure with `text-wrap: pretty`. A centred
+paragraph on a 992px content box has to read as set rather than as text that
+happened to wrap, and its earlier 46ch left-aligned setting left a three-word
+orphan in a half-empty band.
 
 ## Macrostructure
 
@@ -55,7 +69,7 @@ Two things follow from it, and they are the whole of the change:
 only writing was three tool posts, so the home page carries projects, not posts.
 
 ```
-/              home — masthead, figures, strip, Built, Written
+/              home — masthead, Built, Written
 /projects/     the portfolio index
 /projects/…/   one project
 /writing/      the writing index
@@ -71,10 +85,9 @@ Those URLs are out in the world; they stay working.
 | Part | Class | Where |
 | --- | --- | --- |
 | Nav, edge-aligned minimal | `.n9` | every page; `.is-home` drops the wordmark |
-| Masthead | `.masthead` | home only — name, one paragraph, chip |
-| Stat-led hero | `.stat-hero`, `.figures`, `.figure`, `.fig-text` | home |
-| Supporting strip | `.strip` | home |
+| Masthead | `.masthead` | home only — name and one paragraph, centred |
 | Section head | `.head`, `.head-note` | home |
+| Chip | `.chip` | project pages only, since 16.09.2026 |
 | Project rows | `.rows`, `.row` | home, `/projects/` |
 | Writing list | `.reads`, `.reads.is-index` | home, `/writing/` |
 | Project page | `.proj-head`, `.spec`, `.steps` | `/projects/…/` |
@@ -100,7 +113,8 @@ stylesheet and no component-scoped CSS: one file, one system.
 6. **No invented numbers, ever.** Every figure on the site is real and dated. A
    figure that is not countable yet shows a dash and says why — see the kilograms
    row. This is the site's whole premise and it is not negotiable.
-7. **A figure never wraps.** `1,0` over `27` reads as a bug, not a number.
+7. **A figure never wraps.** `1,0` over `27` reads as a bug, not a number. Still
+   true of the figures in the project rows.
 7b. **The name never sets below `line-height: 1.02`.** It is all-caps, so it has
    no descenders: below 1.0 the cap-tops of a wrapped second line collide with
    the first. It does wrap, at 320px, so this is not hypothetical.
@@ -138,21 +152,17 @@ runs most, brightest. When that lands, replace the drawing in
 
 ## The figures
 
-`src/data/figures.ts`, hand-entered, with `LAST_MEASURED` in `src/consts.ts` as
-the date they were read. The colophon and the source line under the strip both
-read that constant, so they cannot disagree.
+`src/data/figures.ts` holds three figures and a three-item strip, hand-entered
+from `data/data.db`. **Nothing renders them since 16.09.2026** — see the section
+above. The file and `LAST_MEASURED` in `src/consts.ts` are kept for the export job
+that will replace the file's contents.
 
-Wiring them to update themselves — a `data/data.db` → JSON export the build reads
-— is a separate job. When it lands it replaces the contents of `figures.ts` and
-nothing else.
-
-**Settled 2026-09-16:** the kilograms figure was a dash while Carmine decided. It
-now publishes **10,913 kg**, which is what `lf_strength_log` holds across 51 sets.
-Two things to know before anyone edits it: `strength_sets` disagrees at 7,112 kg for
-the same span — `lf_strength_log` is the sheet he actually fills in, so it is the one
-published — and the log only starts 20.08.2026, which is why the period sits in the
-label. Take "since Aug 2026" out and the figure claims to be all-time, which breaks
-rule 6.
+For the record, so the numbers are not lost: the kilograms figure is **10,913 kg**
+from `lf_strength_log` across 51 sets. `strength_sets` disagrees at 7,112 kg for
+the same span; `lf_strength_log` is the sheet Carmine actually fills in, so it was
+the published one. The log starts 20.08.2026, which is why its label carried
+"since Aug 2026" — without that the figure claims to be all-time, which would
+break rule 6.
 
 ## Adding things
 
@@ -173,14 +183,13 @@ it. The system is deliberately small.
 
 ## Checked
 
-**2026-09-16, after the hierarchy amendment.** Every page renders at 320, 360,
-375, 390, 414, 540, 600, 768, 900, 1024, 1280, 1440 and 1920px with no horizontal
-overflow, no console errors and no failed requests. The name outranks the lead
-figure at all thirteen widths and sets on one line at every one of them except
-320px, where it breaks between the words. The hero — name, paragraph, chip, first
-figure and its label — clears the fold at 1280×800. No clickable text wraps to two
-lines anywhere between 320 and 1920px, across home, both index pages, a project
-page and an article.
+**2026-09-16, after the figures were removed.** All six page types — home, both
+index pages, a project page, an article and about — render at 320, 360, 375, 390,
+414, 540, 600, 768, 900, 1024, 1280, 1440 and 1920px with no horizontal overflow,
+no console errors, no failed requests, one `h1` each, and no clickable text
+wrapping to two lines. The all-caps name never sets below `line-height: 1.02`. At
+1280×800 the masthead ends at 460px and the first project row is fully visible at
+766px, so the introduction and the first thing he built share the fold.
 
 **Known, not caused by this change:** `/writing/batch-work/` renders two `<h1>`
 elements — the layout's title and an `# Batch work` heading inside the post's

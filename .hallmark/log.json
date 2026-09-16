@@ -2,12 +2,24 @@
   {
     "date": "2026-09-16",
     "scope": "page",
+    "macrostructure": "Long Document",
+    "theme": "custom",
+    "theme_axes": "dark / display-condensed-roman / chromatic-lime",
+    "vibe": "scoreboard on a night map, measured, lime",
+    "enrichment": "Tier-A canvas route network",
+    "brief": "runthenumbers.ch home \u2014 figures dropped, projects promoted under a centred masthead",
+    "design_system": "design.md",
+    "note": "Stat-Led no longer applies: the page has no stats. designed-as-app."
+  },
+  {
+    "date": "2026-09-16",
+    "scope": "page",
     "macrostructure": "Stat-Led",
     "theme": "custom",
     "theme_axes": "dark / display-condensed-roman / chromatic-lime",
     "vibe": "scoreboard on a night map, measured, lime",
     "enrichment": "Tier-A canvas route network",
-    "brief": "runthenumbers.ch home hero — the name outranks the figures, one column, one paragraph",
+    "brief": "runthenumbers.ch home hero \u2014 the name outranks the figures, one column, one paragraph",
     "design_system": "design.md",
     "note": "designed-as-app: consistency with design.md, not catalog rotation."
   }

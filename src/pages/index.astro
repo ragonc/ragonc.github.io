@@ -1,15 +1,14 @@
 ---
-// Stat-led home. Masthead, the figures, the supporting strip, Built, Written.
-// The figures are hand-entered in src/data/figures.ts; the rows and the reads
-// come from the content collections.
+// The home page: who he is, then what he built. No figures — 16.09.2026, his
+// call; see design.md. src/data/figures.ts is still on disk because the
+// data/data.db export job is planned against it, but nothing reads it now.
 import { getCollection } from 'astro:content';
 import ProjectRows from '../components/ProjectRows.astro';
-import { FIGURES, STRIP } from '../data/figures';
 import Base from '../layouts/Base.astro';
 // SITE_DESCRIPTION still feeds <meta> and the RSS feed through Base; it no
 // longer prints on the page, because it said the same thing as the paragraph
 // below the name. One of the two had to go — 16.09.2026, Carmine's call.
-import { LAST_MEASURED, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 const projects = (await getCollection('projects')).sort(
 	(a, b) => a.data.order - b.data.order,
@@ -29,49 +28,7 @@ const swiss = (d: Date) =>
 			measure my own training, admin and money, then build the tools that do the
 			measuring for me. This is what came out.
 		</p>
-		<a class="chip" href="#built">The things I built &rarr;</a>
 	</section>
-
-	<section class="stat-hero">
-		<div class="figures">
-			{
-				FIGURES.map((f, i) => (
-					<div class:list={['fig-row', { 'is-pending': f.value === null }]}>
-						<p class:list={['figure', 'tnum', { 'figure-2': i > 0 }]}>
-							{f.value === null ? (
-								<span aria-label="not counted yet">&mdash;</span>
-							) : (
-								<span>{f.value}</span>
-							)}
-							<span class="unit">{f.unit}</span>
-						</p>
-						<div class="fig-text">
-							<p class="fig-label">{f.label}</p>
-							{f.note && <p class="fig-note">{f.note}</p>}
-						</div>
-					</div>
-				))
-			}
-		</div>
-	</section>
-
-	<dl class="strip tnum">
-		{
-			STRIP.map((s) => (
-				<div>
-					<dt>{s.label}</dt>
-					<dd>
-						{s.value}
-						<small>{s.qualifier}</small>
-					</dd>
-				</div>
-			))
-		}
-	</dl>
-	<p class="sourceline">
-		Figures pulled from my own database on {LAST_MEASURED}. Updated by hand until the
-		export runs itself.
-	</p>
 
 	<h2 class="head" id="built">Built</h2>
 	<!-- His sentence, not a derived count: "Two" reads better than "2", and he
