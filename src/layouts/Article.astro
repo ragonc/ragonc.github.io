@@ -1,0 +1,32 @@
+---
+// The article page. Kicker rule above and below the byline, a standfirst, then a
+// 34rem measure. No hero image: the design never had one.
+import type { CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import { SITE_TITLE } from '../consts';
+
+type Props = CollectionEntry<'writing'>['data'];
+
+const { title, description, pubDate, updatedDate, byline } = Astro.props;
+const swiss = (d: Date) =>
+	d.toLocaleDateString('de-CH', { day: '2-digit', month: '2-digit', year: 'numeric' });
+---
+
+<Base title={`${title} — ${SITE_TITLE}`} description={description}>
+	<article class="article">
+		<header>
+			<h1>{title}</h1>
+			<p class="byline">
+				{swiss(pubDate)}
+				{byline && <> · {byline}</>}
+				{updatedDate && <> · updated {swiss(updatedDate)}</>}
+			</p>
+			<p class="standfirst">{description}</p>
+		</header>
+
+		<div class="body">
+			<slot />
+			<a class="back-link" href="/writing/">&larr; the rest of the writing</a>
+		</div>
+	</article>
+</Base>

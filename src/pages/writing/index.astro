@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { SITE_TITLE } from '../../consts';
+
+const posts = (await getCollection('writing')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const swiss = (d: Date) =>
+	d.toLocaleDateString('de-CH', { day: '2-digit', month: '2-digit', year: 'numeric' });
+---
+
+<Base
+	title={`Writing — ${SITE_TITLE}`}
+	description="Write-ups of the setup that runs my admin and side projects, and the tools that came out of it."
+>
+	<section class="page-head">
+		<h1>Writing</h1>
+		<p class="lede">
+			Argo is the setup that runs a good part of my admin and side projects: a Claude Code
+			session, a folder of plain-text files, a task manager it can write to, and three rules.
+			These are the write-ups.
+		</p>
+	</section>
+	<ul class="reads is-index">
+		{
+			posts.map((post) => (
+				<li>
+					<a href={`/writing/${post.id}/`}>
+						<span>{post.data.title}</span>
+						<span class="when">{swiss(post.data.pubDate)}</span>
+						<p class="desc">{post.data.description}</p>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+	<a class="back-link" href="/">&larr; everything else</a>
+</Base>

@@ -1,90 +1,95 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+// Stat-led home. Masthead, the figures, the supporting strip, Built, Written.
+// The figures are hand-entered in src/data/figures.ts; the rows and the reads
+// come from the content collections.
 import { getCollection } from 'astro:content';
+import ProjectRows from '../components/ProjectRows.astro';
+import { FIGURES, STRIP } from '../data/figures';
+import Base from '../layouts/Base.astro';
+import { LAST_MEASURED, SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
-const posts = (await getCollection('blog'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-  .slice(0, 3);
+const projects = (await getCollection('projects')).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+const posts = (await getCollection('writing')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+const swiss = (d: Date) =>
+	d.toLocaleDateString('de-CH', { day: '2-digit', month: '2-digit', year: 'numeric' });
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-  </head>
-  <body>
-    <Header />
-    <main class="hero-page">
-      <section class="hero">
-        <span class="tag">Run the Numbers</span>
-        <h1>I run the numbers on my own life.</h1>
-        <p class="sub">
-          Data analyst in Zurich. Races, budgets, training plans — if it can be
-          measured, it ends up in a spreadsheet here.
-        </p>
-        <div class="actions">
-          <a class="btn solid" href="/blog/">Read the blog</a>
-          <a class="btn ghost" href="/about/">About me →</a>
-        </div>
-      </section>
+<Base title={SITE_TITLE} description={SITE_DESCRIPTION} home>
+	<section class="masthead">
+		<h1>Run the <span class="hl">Numbers</span></h1>
+		<p>{SITE_DESCRIPTION}</p>
+	</section>
 
-      <section class="latest">
-        <h2>Latest</h2>
-        <ul>
-          {posts.map((post) => (
-            <li>
-              <a href={`/blog/${post.id}/`}>
-                <span class="title">{post.data.title}</span>
-                <span class="date"><FormattedDate date={post.data.pubDate} /></span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </main>
-    <Footer />
-    <style>
-      .hero-page { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
-      .hero { text-align: center; padding: 7rem 0 5rem; }
-      .tag {
-        display: inline-block; font-size: 0.85rem; padding: 0.35em 1em;
-        border: 1px solid currentColor; border-radius: 999px; opacity: 0.7;
-        margin-bottom: 2rem;
-      }
-      .hero h1 {
-        font-size: clamp(2.8rem, 8vw, 5.5rem);
-        line-height: 1.02; letter-spacing: -0.03em; font-weight: 800;
-        margin: 0 0 1.75rem;
-      }
-      .sub {
-        font-size: 1.2rem; opacity: 0.65; max-width: 34em;
-        margin: 0 auto 2.5rem; line-height: 1.5;
-      }
-      .actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
-      .btn {
-        border-radius: 999px; padding: 0.8em 1.6em; font-size: 1rem;
-        text-decoration: none; transition: opacity 0.15s;
-      }
-      .btn:hover { opacity: 0.8; }
-      .btn.solid { background: #111; color: #fff; }
-      .btn.ghost { border: 1px solid #ccc; color: inherit; }
-      .latest { padding: 3rem 0 6rem; max-width: 640px; margin: 0 auto; }
-      .latest h2 {
-        font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em;
-        opacity: 0.5; margin-bottom: 1rem;
-      }
-      .latest ul { list-style: none; padding: 0; margin: 0; }
-      .latest li a {
-        display: flex; justify-content: space-between; align-items: baseline;
-        gap: 1rem; padding: 1rem 0; text-decoration: none; color: inherit;
-        border-bottom: 1px solid rgba(128,128,128,0.2);
-      }
-      .latest li a:hover .title { text-decoration: underline; }
-      .latest .date { opacity: 0.5; font-size: 0.9rem; white-space: nowrap; }
-    </style>
-  </body>
-</html>
+	<section class="stat-hero">
+		<div class="figures">
+			{
+				FIGURES.map((f, i) => (
+					<div class:list={['fig-row', { 'is-pending': f.value === null }]}>
+						<p class="fig-label">{f.label}</p>
+						<p class:list={['figure', 'tnum', { 'figure-2': i > 0 }]}>
+							{f.value === null ? (
+								<span aria-label="not counted yet">&mdash;</span>
+							) : (
+								<span>{f.value}</span>
+							)}
+							<span class="unit">{f.unit}</span>
+						</p>
+						{f.note && <p class="fig-note">{f.note}</p>}
+					</div>
+				))
+			}
+		</div>
+		<div class="qualifier-col">
+			<p class="qualifier">
+				I'm Carmine. Data analyst in Zurich, marathons and HYROX on the side. I measure my
+				own training, admin and money, then build the tools that do the measuring for me.
+				This is what came out.
+			</p>
+			<a class="chip" href="#built">The things I built &rarr;</a>
+		</div>
+	</section>
+
+	<dl class="strip tnum">
+		{
+			STRIP.map((s) => (
+				<div>
+					<dt>{s.label}</dt>
+					<dd>
+						{s.value}
+						<small>{s.qualifier}</small>
+					</dd>
+				</div>
+			))
+		}
+	</dl>
+	<p class="sourceline">
+		Figures pulled from my own database on {LAST_MEASURED}. Updated by hand until the
+		export runs itself.
+	</p>
+
+	<h2 class="head" id="built">Built</h2>
+	<!-- His sentence, not a derived count: "Two" reads better than "2", and he
+	     rewrites the line the day a third thing starts running. -->
+	<p class="head-note">
+		Two things run every day. One is waiting on data I have not exported yet.
+	</p>
+	<ProjectRows projects={projects} />
+
+	<h2 class="head" id="written">Written</h2>
+	<ul class="reads">
+		{
+			posts.map((post) => (
+				<li>
+					<a href={`/writing/${post.id}/`}>
+						<span>{post.data.title}</span>
+						<span class="when">{swiss(post.data.pubDate)}</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</Base>

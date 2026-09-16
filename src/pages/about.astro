@@ -1,41 +1,40 @@
 ---
-import Layout from '../layouts/BlogPost.astro';
+import Base from '../layouts/Base.astro';
+import { SITE_TITLE } from '../consts';
 ---
 
-<Layout
-	title="About"
-	description="Who runs the numbers here, and how."
-	pubDate={new Date('September 04 2026')}
->
-	<p>
-		I'm Carmine. I live in Zurich, I work in analytics, and I lead a small team of data
-		analysts by day. Outside work I run marathons, race HYROX, have a soft spot for
-		backyard ultras, and coach a running club. I do my admin in Italian, English and
-		German, usually in that order of confidence.
-	</p>
-	<p>
-		This blog exists because I kept running the same kind of analysis on my own life
-		and never writing it down. What a late hard session does to that night's HRV. What
-		a franc buys you in protein at Migros versus McDonald's. Whether a taper actually
-		shows up in resting heart rate or only in my head. If it can be measured, it ends up
-		in a spreadsheet, and the spreadsheets that turn out to say something end up here.
-	</p>
-	<p>
-		Some posts are about the numbers. Some are about the tools I needed to get at
-		them, because the data was sitting in an app with no export button. Both count.
-	</p>
-	<p>
-		A note on how things get made. I run a personal Claude Code setup that handles a
-		lot of my admin and side projects. Some of the tools described here were written by
-		it under my direction, and some posts start as its draft of a conversation we had.
-		Where that is the case the post says so. Everything published is read, checked and
-		signed off by me, and the mistakes are mine.
-	</p>
-	<p>
-		No newsletter, no schedule. I write when something is genuinely figured out, which
-		is once or twice a month at most. If a post is useful to you, or wrong, the best
-		place to tell me is
-		<a href="https://github.com/ragonc">GitHub</a>.
-	</p>
-</Layout>
-
+<Base title={`About — ${SITE_TITLE}`} description="Who runs the numbers here, and how.">
+	<section class="about">
+		<h1>About</h1>
+		<p>
+			I'm Carmine. I live in Zurich, I work in analytics, and I lead a small team of data
+			analysts by day. Outside work I run marathons, race HYROX, have a soft spot for
+			backyard ultras, and coach a running club. I do my admin in Italian, English and
+			German, usually in that order of confidence.
+		</p>
+		<p>
+			This site exists because I kept running the same kind of analysis on my own life and
+			never writing it down. What a late hard session does to that night's HRV. What a franc
+			buys you in protein at Migros versus McDonald's. Whether a taper actually shows up in
+			resting heart rate or only in my head. If it can be measured, it ends up in a
+			spreadsheet, and the spreadsheets that turn out to say something end up here.
+		</p>
+		<p>
+			Some of what is here is about the numbers. Some of it is the tools I needed to get at
+			them, because the data was sitting in an app with no export button. Both count.
+		</p>
+		<p>
+			A note on how things get made. I run a personal Claude Code setup that handles a lot of
+			my admin and side projects. Some of the tools described here were written by it under
+			my direction, and some posts start as its draft of a conversation we had. Where that is
+			the case the post says so. Everything published is read, checked and signed off by me,
+			and the mistakes are mine.
+		</p>
+		<p>
+			No newsletter, no schedule. I write when something is genuinely figured out, which is
+			once or twice a month at most. If a post is useful to you, or wrong, the best place to
+			tell me is <a href="https://github.com/ragonc">GitHub</a>.
+		</p>
+		<a class="back-link" href="/">&larr; everything else</a>
+	</section>
+</Base>

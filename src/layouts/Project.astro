@@ -1,0 +1,53 @@
+---
+// The project page. Name, standfirst, state and link, the spec table, the prose,
+// the numbered walkthrough, and a slot where a screenshot will go.
+import type { CollectionEntry } from 'astro:content';
+import Base from './Base.astro';
+import { SITE_TITLE } from '../consts';
+
+type Props = CollectionEntry<'projects'>['data'];
+
+const { title, description, standfirst, state, link, spec, steps, placeholder } =
+	Astro.props;
+---
+
+<Base title={`${title} — ${SITE_TITLE}`} description={description}>
+	<section class="proj-head">
+		<h1>{title}</h1>
+		<p class="standfirst">{standfirst ?? description}</p>
+		<div class="statebar">
+			<span class:list={['state', state]}>{state === 'live' ? 'Live' : 'Parked'}</span>
+			{link && <a class="chip" href={link.href}>{link.label}</a>}
+		</div>
+
+		{
+			spec.length > 0 && (
+				<dl class="spec tnum">
+					{spec.map((s) => (
+						<div>
+							<dt>{s.term}</dt>
+							<dd>{s.value}</dd>
+						</div>
+					))}
+				</dl>
+			)
+		}
+	</section>
+
+	<div class="prose">
+		<slot />
+	</div>
+
+	{
+		steps.length > 0 && (
+			<ol class="steps">
+				{steps.map((step) => (
+					<li>{step}</li>
+				))}
+			</ol>
+		)
+	}
+
+	{placeholder && <div class="placeholder"><p>{placeholder}</p></div>}
+	<a class="back-link" href="/projects/">&larr; the other projects</a>
+</Base>

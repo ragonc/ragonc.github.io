@@ -1,63 +1,43 @@
-# Astro Starter Kit: Blog
+# runthenumbers.ch
+
+The personal site of Carmine Ragone — a data analyst in Zurich running the numbers
+on training, budgets, and everything else. Astro, deployed to GitHub Pages from
+`main` by `.github/workflows/deploy.yml`.
+
+## Running it
 
 ```sh
-npm create astro@latest -- --template blog
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # -> dist/
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Node 22.12 or newer.
 
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Where things are
 
 ```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+src/
+├── assets/fonts/     the three self-hosted variable fonts (see its README)
+├── components/       nav, colophon, the project rows, the background canvas
+├── content/
+│   ├── projects/     the portfolio — one .md per project
+│   └── writing/      the posts
+├── data/figures.ts   the home page's figures, hand-entered
+├── layouts/          Base (the shell), Article, Project
+├── pages/            the routes
+├── scripts/          the background route layer
+└── styles/global.css the whole design system, one file
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Before changing how it looks
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Read **`design.md`**. It is short, and it holds the rules that keep the design
+coherent — what the two colours are for, why a figure never wraps, and why no
+number on this site is ever invented.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+## Adding a post or a project
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Covered at the end of `design.md`. Both are a single Markdown file; the frontmatter
+shape is enforced by `src/content.config.ts`.

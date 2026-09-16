@@ -1,0 +1,47 @@
+---
+// The portfolio rows — hairlines, not cards. The home page and the Projects index
+// render the same list from the same collection, so the two can never disagree.
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	projects: CollectionEntry<'projects'>[];
+	/** 3 under the home page's "Built" head, 2 under the section index's h1. */
+	headingLevel?: 2 | 3;
+}
+
+const { projects, headingLevel = 3 } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+
+const linkFor = (p: CollectionEntry<'projects'>) =>
+	p.data.page ? `/projects/${p.id}/` : p.data.href;
+---
+
+<div class="rows">
+	{
+		projects.map((p) => {
+			const href = linkFor(p);
+			// A row with nowhere to go is text, not a dead link.
+			const Row = href ? 'a' : 'div';
+			return (
+				<Row class="row" href={href}>
+					<div>
+						<Heading class="row-name">{p.data.title}</Heading>
+						<p class="row-what">{p.data.description}</p>
+						<p class="row-meta">
+							<span class:list={['state', p.data.state]}>
+								{p.data.state === 'live' ? 'Live' : 'Parked'}
+							</span>
+							&nbsp;{p.data.meta}
+						</p>
+					</div>
+					{p.data.figure && (
+						<div class="row-figure tnum">
+							<b>{p.data.figure.value}</b>
+							<span>{p.data.figure.label}</span>
+						</div>
+					)}
+				</Row>
+			);
+		})
+	}
+</div>
