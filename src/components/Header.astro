@@ -1,53 +1,32 @@
 ---
-import { SITE_TITLE } from '../consts';
+// N9 · edge-aligned minimal. On the home page the masthead carries the site's
+// name, so the nav drops the wordmark and keeps only its links — the name is
+// never printed twice on the same screen.
+interface Props {
+	home?: boolean;
+}
+
+const { home = false } = Astro.props;
 const path = Astro.url.pathname;
 const links = [
-  { href: '/', label: 'Home' },
-  { href: '/blog/', label: 'Blog' },
-  { href: '/argo-tools/', label: 'Argo tools' },
-  { href: '/about/', label: 'About' },
+	{ href: '/', label: 'Home' },
+	{ href: '/projects/', label: 'Projects' },
+	{ href: '/writing/', label: 'Writing' },
+	{ href: '/about/', label: 'About' },
 ];
-const isActive = (href: string) =>
-  href === '/' ? path === '/' : path.startsWith(href.replace(/\/$/, ''));
+const isCurrent = (href: string) =>
+	href === '/' ? path === '/' : path.startsWith(href);
 ---
 
-<header>
-  <nav class="pill">
-    <a class="brand" href="/" aria-label={SITE_TITLE}>RTN</a>
-    <div class="links">
-      {links.map((l) => (
-        <a href={l.href} class={isActive(l.href) ? 'active' : ''}>{l.label}</a>
-      ))}
-    </div>
-  </nav>
-</header>
-
-<style>
-  header {
-    position: sticky; top: 1rem; z-index: 10;
-    display: flex; justify-content: center;
-    padding: 1rem 1.5rem 0;
-    background: none; box-shadow: none; margin: 0;
-  }
-  .pill {
-    display: flex; align-items: center; gap: 2.5rem;
-    width: 100%; max-width: 860px;
-    padding: 0.6rem 0.9rem 0.6rem 1.4rem;
-    border-radius: 999px;
-    background: rgba(244, 244, 245, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-  }
-  .brand {
-    font-weight: 900; font-size: 1.15rem; text-decoration: none;
-    color: inherit; letter-spacing: -0.04em; margin-right: auto;
-  }
-  .links { display: flex; gap: 1.8rem; }
-  .links a {
-    text-decoration: none; color: inherit;
-    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em;
-    opacity: 0.6; border: none;
-  }
-  .links a:hover { opacity: 1; }
-  .links a.active { opacity: 1; font-weight: 700; }
-</style>
+<div class:list={['n9', { 'is-home': home }]}>
+	{!home && <a class="mark" href="/">Run the <span class="hl">Numbers</span></a>}
+	<nav>
+		{
+			links.map((l) => (
+				<a href={l.href} aria-current={isCurrent(l.href) ? 'page' : undefined}>
+					{l.label}
+				</a>
+			))
+		}
+	</nav>
+</div>

@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectRows from '../../components/ProjectRows.astro';
+import Base from '../../layouts/Base.astro';
+import { SITE_TITLE } from '../../consts';
+
+const projects = (await getCollection('projects')).sort(
+	(a, b) => a.data.order - b.data.order,
+);
+---
+
+<Base
+	title={`Projects — ${SITE_TITLE}`}
+	description="The software I built for myself: what it does, what it runs on, and whether it is running."
+>
+	<section class="page-head">
+		<h1>Projects</h1>
+		<p class="lede">
+			The software I built for myself, and still use. What is here is what runs — or what is
+			parked and says so.
+		</p>
+	</section>
+	<ProjectRows projects={projects} headingLevel={2} />
+	<a class="back-link" href="/">&larr; everything else</a>
+</Base>

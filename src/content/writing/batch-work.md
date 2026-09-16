@@ -2,6 +2,7 @@
 title: 'Long jobs in Claude Code: let the script do the work'
 description: 'Anything over a few minutes dies with the turn. The fix is a pattern, not a trick: the agent writes the script, the script runs detached, the chat only reads a status file.'
 pubDate: 'Sep 03 2026'
+byline: 'written by me, drafted with the setup it describes'
 ---
 
 Claude Code is built around turns. You type, the model works, the turn ends. That shape is fine for editing a file or answering a question, and it breaks the moment the job is a two-hour loop over a few thousand rows. Anything running inside a turn dies when the turn ends. A subagent doing the loop dies with it. And if you keep the turn alive with progress messages, every one of those messages lands in the session, so each later reply gets slower and the context fills with "processed 1,340 of 2,000".
