@@ -30,6 +30,11 @@ rejected. Carmine's call was to stop arranging it and remove it: the figures, th
 strip, the source line, and the "The things I built" chip, which pointed at a
 section that now sits directly under the masthead.
 
+**The chip came back the same day.** Removing it was this run's reasoning, not
+his instruction, and he overruled it: it sits under the masthead paragraph,
+centred, still pointing at `#built`. The anchor still earns its place on a phone,
+where Built is below the fold. The rest of the removal stands.
+
 What stays:
 
 - **`src/data/figures.ts` is still on disk, and nothing reads it.** The
@@ -116,7 +121,7 @@ Those URLs are out in the world; they stay working.
 | Nav, edge-aligned minimal | `.n9` | every page; `.is-home` drops the wordmark |
 | Masthead | `.masthead` | home only — name and one paragraph, centred |
 | Section head | `.head`, `.head-note` | home |
-| Chip | `.chip` | project pages only, since 16.09.2026 |
+| Chip | `.chip` | home (under the masthead paragraph) and project pages |
 | Project rows | `.rows`, `.row` | home, `/projects/` |
 | Writing list | `.reads`, `.reads.is-index` | home, `/writing/` |
 | Project page | `.proj-head`, `.spec`, `.steps` | `/projects/…/` |
