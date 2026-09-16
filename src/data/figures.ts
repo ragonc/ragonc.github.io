@@ -18,12 +18,12 @@ export interface Figure {
 export const FIGURES: Figure[] = [
 	{ label: 'Kilometres run in 2026', value: '1,027', unit: 'km' },
 	{ label: 'Hours trained', value: '215', unit: 'h' },
-	{
-		label: 'Kilograms lifted',
-		value: null,
-		unit: 'kg',
-		note: 'The strength log starts 20.08.2026. This counts once it covers a year.',
-	},
+	// The period is in the label, as it is for the kilometres above. Unqualified this
+	// figure would read as all-time, which would not be true: it is the sum of
+	// lf_strength_log over 51 sets, and that log only starts 20.08.2026. strength_sets
+	// gives 7,112 kg for the same span; lf_strength_log is the sheet Carmine actually
+	// fills in, so it is the one published here.
+	{ label: 'Kilograms lifted since Aug 2026', value: '10,913', unit: 'kg' },
 ];
 
 /** The quieter strip underneath. */
