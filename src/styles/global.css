@@ -8,6 +8,8 @@
  *         caught mid-count reads as broken in a thumbnail, and the number is the point)
  * tone: utilitarian-editorial · anchor hue: lime 122
  * design-system: design.md · designed-as-app
+ * 2026-09-16: the hero owns the first screen — .masthead fills 100svh minus
+ *   the nav, and Built arrives on a scroll or on the chip, never by default.
  * 2026-09-16: the home page carries no figures. The stat hero, the supporting
  *   strip and the source line were removed, the project rows moved up under the
  *   masthead, and the masthead is centred at 116px. See design.md § The home
@@ -52,6 +54,12 @@
   --text-sm: 0.9375rem;
   --text-xs: 0.75rem;
 
+  /* The nav's rendered height, measured at 320, 390, 768, 1024, 1440 and
+     1920px: 63px at every one of them. The home masthead subtracts it from the
+     viewport so the hero fills exactly the screen below the nav. Re-measure if
+     the nav's padding, font-size or border changes. */
+  --nav-h: 63px;
+
   --rule-hair: 1px;
   --radius-chip: 2px;
   --dur-fast: 120ms; --dur-mid: 220ms; --dur-slow: 600ms;
@@ -82,6 +90,12 @@ a { color: inherit; }
   outline-offset: 3px;
 }
 h1, h2, h3 { font-style: normal; text-wrap: balance; }
+/* The chip is the one thing on the first screen that says there is more below,
+   so its jump is animated — for anyone who has not asked for less motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+:target, #built { scroll-margin-top: var(--space-lg); }
 .tnum { font-variant-numeric: tabular-nums; }
 
 .n9 {
@@ -119,7 +133,19 @@ h1, h2, h3 { font-style: normal; text-wrap: balance; }
   text-align: center;
   padding-block: clamp(var(--space-xl), 9vw, var(--space-2xl)) var(--space-xl);
   border-bottom: var(--rule-hair) solid var(--color-rule);
+  /* The hero owns the first screen: Built arrives on a scroll or on the chip,
+     never by default. svh, not vh — on mobile browsers 100vh measures against
+     the viewport with the URL bar retracted, so the hero would be taller than
+     the screen and the next section would peek in anyway, which is the bug
+     this rule exists to fix. min-height, not height — a short viewport (a
+     landscape phone) then grows the hero instead of clipping it. */
+  min-height: calc(100vh - var(--nav-h));
+  min-height: calc(100svh - var(--nav-h));
+  display: flex; flex-direction: column; justify-content: center;
 }
+/* The chip is a flex item here, so its inline-block would stretch to the full
+   column; align-self shrink-wraps it back and keeps it centred. */
+.masthead .chip { align-self: center; }
 .masthead h1 {
   margin: 0;
   font-family: var(--font-display); font-weight: 800;

@@ -49,6 +49,33 @@ What stays:
 If the figures come back, they come back as a decision, not as a regression: this
 section is the record that their absence is deliberate.
 
+## The first screen is the hero alone *(16.09.2026)*
+
+**Nothing below the masthead is visible until someone scrolls or clicks the
+chip.** `.masthead` is `min-height: calc(100svh - var(--nav-h))`, a flex column
+centred on its cross axis, so it fills exactly the screen below the nav. This is
+a macrostructure decision, not spacing: the home page is a landing page whose
+first screen argues one thing, and the work arrives on a deliberate move.
+
+- `--nav-h` is **63px**, measured at 320, 390, 768, 1024, 1440 and 1920px — the
+  nav renders the same height at all of them. Re-measure it if the nav's
+  padding, font-size or border changes.
+- **`svh`, not `vh`.** On mobile browsers `100vh` measures against the viewport
+  with the URL bar retracted, so the hero would be taller than the screen and
+  Built would peek in anyway — the exact bug this rule fixes. A `vh` line sits
+  above the `svh` one purely as a fallback.
+- **`min-height`, not `height`.** A landscape phone (844×390) has less room than
+  the hero's own content; min-height lets it grow instead of clipping. There you
+  scroll to reach the chip, and Built is still below the fold. That case is not
+  worth distorting the design for.
+- **The chip is the only cue that there is more below.** Its arrow points right,
+  not down. Left as it is — the label is Carmine's and he has not asked to
+  change it — but it is the first thing to revisit if anyone reports not knowing
+  to scroll.
+
+Verified on bounding boxes: Built's top edge sits below the fold at 1280×800,
+1440×900, 1920×1080, 390×844, 375×812, 360×640, 768×1024 and 844×390.
+
 ## The hierarchy *(amended 16.09.2026)*
 
 **The name is the largest type on the page, and the only display-scale thing in
