@@ -58,10 +58,29 @@ composition — the centring is not `text-align: center` painted onto a
 left-aligned layout, and the rows are never centred: a row with a name left and a
 figure right stops working the moment it is.
 
-The paragraph is held to a 48ch measure with `text-wrap: pretty`. A centred
-paragraph on a 992px content box has to read as set rather than as text that
-happened to wrap, and its earlier 46ch left-aligned setting left a three-word
-orphan in a half-empty band.
+**The paragraph's measure is derived from the name, not chosen.** Its max-width
+is `max(38ch, calc(var(--text-display) * 6.18))`, so the two centred blocks share
+both edges at every viewport: 717px and 65ch at desktop, 551px at 768, 430px at
+600. Do not replace that calc with a number — it would be right at one width and
+wrong at all the others.
+
+Three things about it, so the next change does not undo them by accident:
+
+- **6.18 is measured, not guessed.** It is the ink width of "RUN THE NUMBERS" per
+  px of font-size, in Big Shoulders Display 800 at -0.015em. Rename the site and
+  it has to be measured again: render the h1, take its line-box width, divide by
+  the computed font-size.
+- **The 38ch floor is load-bearing.** Below ~600px the name is narrower than any
+  readable measure — 27ch at 390px — so matching it there would set the paragraph
+  as a column of scraps. The floor hands the width back to the page container.
+- **The paragraph is 1.25rem because of the wrap, not the taste.** Matching the
+  name's width and avoiding a short last line pull against each other. At
+  1.1875rem the last line was 16% of the longest; 1.25rem makes it 34% at desktop
+  and 99–100% at 600 and 768px. `text-wrap: pretty` is on and computes, but
+  Chromium leaves a three-word last line alone; `text-wrap: balance` fixes it by
+  setting the lines to 513px inside a 717px box, which un-matches the width. So
+  balance is applied only below 600px, where the width is floored and carries no
+  meaning. Re-run the sweep if the sentence is ever rewritten.
 
 ## Macrostructure
 
@@ -188,8 +207,9 @@ index pages, a project page, an article and about — render at 320, 360, 375, 3
 414, 540, 600, 768, 900, 1024, 1280, 1440 and 1920px with no horizontal overflow,
 no console errors, no failed requests, one `h1` each, and no clickable text
 wrapping to two lines. The all-caps name never sets below `line-height: 1.02`. At
-1280×800 the masthead ends at 460px and the first project row is fully visible at
-766px, so the introduction and the first thing he built share the fold.
+1280×800 the masthead ends at 434px and the first project row is fully visible at
+741px, so the introduction and the first thing he built share the fold. The
+paragraph matches the name's width exactly from 600px up and never exceeds 65ch.
 
 **Known, not caused by this change:** `/writing/batch-work/` renders two `<h1>`
 elements — the layout's title and an `# Batch work` heading inside the post's

@@ -132,12 +132,38 @@ h1, h2, h3 { font-style: normal; text-wrap: balance; }
 }
 .masthead h1 .hl { color: var(--color-accent); }
 .masthead p {
-  /* A centred paragraph needs a measure short enough to read as set rather
-     than as text that happened to wrap. 48ch holds it to three even lines. */
-  margin: var(--space-md) auto 0; max-width: 48ch;
+  /* The paragraph is exactly as wide as the name above it, so the two centred
+     blocks share both edges. The name's ink measures 6.18px per px of
+     font-size — that constant is specific to "RUN THE NUMBERS" in Big
+     Shoulders Display 800 at -0.015em tracking, so re-measure it if the site
+     is ever renamed: render the h1, take the width of its line box, divide by
+     the computed font-size.
+
+     The 38ch floor is not decoration. Below ~600px the name is narrower than
+     any readable measure (27ch at 390px), and matching it there would set the
+     paragraph as a column of scraps; the floor hands the width back to the
+     page container, which is what it did before. */
+  margin: var(--space-md) auto 0;
+  max-width: max(38ch, calc(var(--text-display) * 6.18));
   text-wrap: pretty;
-  color: var(--color-ink-2); font-size: 1.1875rem; line-height: 1.6;
+  /* 1.25rem is not a taste call, it is the size that makes this sentence fall
+     evenly into the width above. Matching the name's width and avoiding a
+     short last line pull against each other: at 1.1875rem the last line was
+     16% of the longest, at 1.25rem it is 34% at desktop and 99-100% at 600 and
+     768px. text-wrap: pretty is on and computes, but Chromium leaves a
+     three-word last line alone, and text-wrap: balance fixes it by setting the
+     lines to 513px inside a 717px box — which un-matches the width this rule
+     exists to match. Re-run the sweep if the sentence ever changes. */
+  color: var(--color-ink-2); font-size: 1.25rem; line-height: 1.6;
 }
+/* Below 600px the paragraph is floored rather than matched — the name is too
+   narrow to be a measure there — so its width carries no meaning and the lines
+   may as well be balanced. Above 600px balance would set them inside the box
+   instead of filling it, which would undo the match. */
+@media (max-width: 37.4375rem) {
+  .masthead p { text-wrap: balance; }
+}
+
 /* On the home page the masthead carries the name, so the nav keeps only its
    links — centred, so the top of the page sits on the same axis as the name. */
 .n9.is-home { justify-content: center; }
