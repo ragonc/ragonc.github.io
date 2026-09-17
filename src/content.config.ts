@@ -40,8 +40,18 @@ const projects = defineCollection({
 		steps: z.array(z.string()).default([]),
 		/** A call-to-action next to the state chip. */
 		link: z.object({ href: z.string(), label: z.string() }).optional(),
-		/** A captioned box where a screenshot will go. */
+		/** A captioned box where a screenshot will go. Ignored once `shot` is set. */
 		placeholder: z.string().optional(),
+		/** The screenshot itself: a file under `public/`, what it shows, and one line under it. */
+		shot: z
+			.object({
+				src: z.string(),
+				alt: z.string(),
+				width: z.number(),
+				height: z.number(),
+				caption: z.string().optional(),
+			})
+			.optional(),
 		/**
 		 * False when there is nothing to say on a page of its own yet. The row then
 		 * links to `href` if it has one, and is plain text if it does not — rather

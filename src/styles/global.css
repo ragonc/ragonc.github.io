@@ -345,6 +345,17 @@ a.row:hover .row-name { color: var(--color-accent); }
   margin: 0; font-family: var(--font-mono); font-size: var(--text-xs);
   letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted);
 }
+/* The screenshot, in the placeholder's slot. Real pixels behind one hairline —
+   no drawn frame, no shadow: the image carries its own ground. */
+.shot { margin: var(--space-lg) 0 0; max-width: 100%; }
+.shot img {
+  display: block; width: 100%; height: auto;
+  border: var(--rule-hair) solid var(--color-rule);
+}
+.shot figcaption {
+  margin-top: var(--space-xs); font-family: var(--font-mono); font-size: var(--text-xs);
+  letter-spacing: 0.06em; color: var(--color-muted);
+}
 
 /* ── Article page ──────────────────────────────────────────────────────── */
 .article { padding-block: var(--space-xl) var(--space-lg); }

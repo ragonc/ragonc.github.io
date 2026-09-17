@@ -1,13 +1,13 @@
 ---
 // The project page. Name, standfirst, state and link, the spec table, the prose,
-// the numbered walkthrough, and a slot where a screenshot will go.
+// the numbered walkthrough, and the screenshot — or the box where it will go.
 import type { CollectionEntry } from 'astro:content';
 import Base from './Base.astro';
 import { SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'projects'>['data'];
 
-const { title, description, standfirst, state, link, spec, steps, placeholder } =
+const { title, description, standfirst, state, link, spec, steps, placeholder, shot } =
 	Astro.props;
 ---
 
@@ -48,6 +48,26 @@ const { title, description, standfirst, state, link, spec, steps, placeholder } 
 		)
 	}
 
-	{placeholder && <div class="placeholder"><p>{placeholder}</p></div>}
+	{
+		shot ? (
+			<figure class="shot">
+				<img
+					src={shot.src}
+					alt={shot.alt}
+					width={shot.width}
+					height={shot.height}
+					loading="lazy"
+					decoding="async"
+				/>
+				{shot.caption && <figcaption>{shot.caption}</figcaption>}
+			</figure>
+		) : (
+			placeholder && (
+				<div class="placeholder">
+					<p>{placeholder}</p>
+				</div>
+			)
+		)
+	}
 	<a class="back-link" href="/projects/">&larr; the other projects</a>
 </Base>

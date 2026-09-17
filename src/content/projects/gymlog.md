@@ -23,7 +23,12 @@ steps:
   - 'Log a round: the main set and its superset, typed together, written as two rows.'
   - 'Tap any set to correct it. The sheet is written the moment you add it, so a fix is a fix in the sheet.'
   - 'Close the session. A nightly job pulls the rows into SQLite, where the figures on the home page come from.'
-placeholder: 'Screenshot — to add'
+shot:
+  src: '/images/gymlog-showcase.webp'
+  alt: 'Three GymLog screens on a phone: the session setup, the log mid-session with the done sets folded, and the review with sets, volume and top weight.'
+  width: 3200
+  height: 2000
+  caption: 'Set up, log, read back. Screens captured from the test environment, September 2026.'
 ---
 
 Training already lived in a spreadsheet. What it did not have was a way in: typing a set
