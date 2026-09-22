@@ -43,6 +43,15 @@
   --map-water: oklch(94% 0.012 142 / 0.07);
   --map-hot:   oklch(88% 0.19 122 / 0.16);
   --map-hot-2: oklch(88% 0.19 122 / 0.1);
+  /* The home page's Zurich map. scripts/citymap/ bakes the first five into the
+     image; the veil is live CSS, dimming the map under the text. */
+  --map-ground: oklch(14% 0.012 142);
+  --map-wood:   oklch(15.2% 0.016 146);
+  --map-lake:   oklch(11.5% 0.010 160);
+  --map-road:   oklch(24% 0.010 142);
+  --map-street: oklch(94% 0.012 142);
+  --map-veil-centre: color-mix(in oklch, var(--color-paper) 72%, transparent);
+  --map-veil-edge:   color-mix(in oklch, var(--color-paper) 27%, transparent);
 
   /* --font-display, --font-body, --font-label and --font-mono are emitted by <Font> in
      BaseHead.astro; the families are declared once, in astro.config.mjs. */
@@ -88,6 +97,18 @@ body {
   position: fixed; inset: 0; z-index: 0;
   width: 100%; height: 100%;
   pointer-events: none;
+}
+/* Home: the Zurich map, fixed behind the page. Portrait screens get their own
+   crop (see RouteMap.astro); both keep the lake's tip near the centre. The veil
+   is darkest where the text sits and lets the map through at the edges. */
+.citymap { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+.citymap img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: 48% 47%;
+}
+.citymap::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 45%, var(--map-veil-centre), var(--map-veil-edge));
 }
 .shell { position: relative; z-index: 1; }
 ::selection { background: var(--color-accent); color: var(--color-accent-ink); }

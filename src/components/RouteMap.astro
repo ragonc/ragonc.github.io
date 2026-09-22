@@ -1,10 +1,31 @@
 ---
-// The background layer. A faint decorative street network standing exactly where
-// the real Strava-style heatmap of Zurich will go once the Garmin export is wired
-// up — swap the drawing in src/scripts/routemap.js and nothing else moves.
+// The background layer.
+// Home: a street map of Zurich rendered from OpenStreetMap (every street, path,
+// forest and the lake), in the site's tokens. It is the city, not Carmine's runs:
+// brightness follows the street class, and overlapping streets add up.
+// Re-render it with scripts/citymap/ (see its README) if a --map-* token changes.
+// Other pages: the decorative canvas network, drawn in src/scripts/routemap.js.
+import land from '../assets/citymap/zurich.webp';
+import portrait from '../assets/citymap/zurich-portrait.webp';
+
+interface Props {
+	home?: boolean;
+}
+const { home = false } = Astro.props;
 ---
 
-<canvas id="routemap" aria-hidden="true"></canvas>
+{
+	home ? (
+		<div class="citymap" aria-hidden="true">
+			<picture>
+				<source media="(orientation: portrait)" srcset={portrait.src} />
+				<img src={land.src} width={land.width} height={land.height} alt="" decoding="async" />
+			</picture>
+		</div>
+	) : (
+		<canvas id="routemap" aria-hidden="true" />
+	)
+}
 
 <script>
 	import '../scripts/routemap.js';

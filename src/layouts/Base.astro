@@ -21,7 +21,7 @@ const { title, description, home = false } = Astro.props;
 		<BaseHead title={title} description={description} />
 	</head>
 	<body>
-		<RouteMap />
+		<RouteMap home={home} />
 		<a class="skip" href="#main">Skip to content</a>
 		<div class="shell">
 			<div class="page">
@@ -29,7 +29,7 @@ const { title, description, home = false } = Astro.props;
 				<main id="main">
 					<slot />
 				</main>
-				<Footer />
+				<Footer home={home} />
 			</div>
 		</div>
 	</body>

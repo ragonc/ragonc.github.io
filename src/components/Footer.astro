@@ -1,6 +1,13 @@
 ---
 // Ft4 · dense colophon. Four columns of small facts, the same on every page.
 import { LAST_READ } from '../data/live';
+
+interface Props {
+	home?: boolean;
+}
+// The home page's background is drawn from OpenStreetMap, whose licence (ODbL)
+// asks for the credit wherever the map is shown.
+const { home = false } = Astro.props;
 ---
 
 <div class="ft4">
@@ -10,7 +17,7 @@ import { LAST_READ } from '../data/live';
 	</div>
 	<div>
 		<b>Colophon</b>Astro on GitHub Pages · Sofia Sans + Newsreader · figures from
-		SQLite
+		SQLite{home && <> · map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</>}
 	</div>
 	<div>
 		<b>Elsewhere</b><a href="/about/">About</a> · <a href="https://github.com/ragonc">GitHub</a

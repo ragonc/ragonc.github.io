@@ -239,16 +239,33 @@ phone would otherwise lose the end of the path.
 
 ## The background
 
-`src/components/RouteMap.astro` draws a faint street network on a `<canvas>`,
-fixed behind every page, `aria-hidden`, drawn from a fixed seed so it is identical
-on every load and every device. It is **decorative and explicitly not real GPS
-data**.
+**Home: a street map of Zurich** *(23.09.2026)*. Carmine asked for the look of a
+Strava heatmap behind the landing page, then for it "way more subtle and darker".
+`src/components/RouteMap.astro` shows a real map of the city, rendered from
+OpenStreetMap: every street and path, the forests, the lake, the Limmat and the
+Sihl. It is fixed behind the page, `aria-hidden`, with its own portrait crop for
+phones.
 
-It is a stand-in. The real thing is a Strava-style heatmap of Zurich built from
-Carmine's own Garmin activities (327 of them in `data/data.db`) — the streets he
-runs most, brightest. When that lands, replace the drawing in
-`src/scripts/routemap.js` and nothing else moves. The `--map-*` tokens in
-`global.css` are the layer's whole palette; it improvises no colour of its own.
+- **It is the city, not his runs.** Line brightness follows the street class, and
+  dense streets add up; nothing on it is a GPS trace. The Route heatmap row still
+  says this layer is standing in for the real thing, and that stays true.
+- **Quiet on purpose.** One street line is near-white at 4.5% before overlaps add
+  up, the lake is darker than the ground, the forests barely lighter, and no lime:
+  the lime stays with links, state and the name. A veil (`--map-veil-*`, live CSS)
+  darkens the map under the text and lets it through at the edges.
+- **Rendered, not improvised.** The two WebPs in `src/assets/citymap/` are
+  rendered by `scripts/citymap/` from the `--map-*` tokens in `global.css`; change
+  a token, re-run the three commands in that folder's README.
+- **Credited.** The data is © OpenStreetMap contributors (ODbL), so the home
+  page's colophon says so. Only the home page, because only it shows the map.
+
+**Every other page: the decorative canvas.** `src/scripts/routemap.js` draws a
+faint made-up street network from a fixed seed, explicitly not real GPS data,
+with the `--map-line*`, `--map-water` and `--map-hot*` tokens.
+
+The real thing is still a heatmap of Carmine's own Garmin activities (327 in
+`data/data.db`, with TCX files). When it lands it replaces the home map's street
+layer, with his home area trimmed out so the site does not show where he lives.
 
 ## The figures
 
