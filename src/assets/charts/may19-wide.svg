@@ -1,0 +1,139 @@
+<svg id="may19-w" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 452" role="img" aria-labelledby="may19-w-t may19-w-d" width="100%">
+<title id="may19-w-t">19 May, what I ran and what a coach would have called</title>
+<desc id="may19-w-d">Average heart rate per rep, 12 x 800 m at 10K pace minus 10 s on 19 May 2026, against a back-off line at 178 bpm and LT2 at 180. What I ran: reps 1 and 2 were the ramp-up, at 4:48 and 4:43, yet rep 2 already averaged 179: the sign of a bad day. Reps 3 to 6 went on at 181 to 183, then a long stop, and rep 7 broke at 5:28 per km; reps 10 to 12 went over the line again. Coached, estimated from that day's heart rate: called at rep 2, rep 3 at LT1 pace 5:35 and about 172 bpm, then reps 4 to 12 at 5:10 per km, all at or under 178.</desc>
+<style>
+#may19-w .row{fill:var(--color-ink-2);font-family:var(--font-mono);font-size:12px}
+#may19-w .num{fill:var(--color-muted);font-family:var(--font-mono);font-size:12px}
+#may19-w .num.hot{fill:var(--color-ink);font-weight:700}
+#may19-w .pace{fill:var(--color-muted);font-family:var(--font-mono);font-size:10px}
+#may19-w .pace.hot{fill:var(--color-ink);font-weight:700}
+#may19-w .note{fill:var(--color-muted);font-family:var(--font-mono);font-size:11px}
+#may19-w .sign{fill:var(--color-ink);font-family:var(--font-mono);font-size:11px;font-weight:700}
+#may19-w .lime-t{fill:var(--color-accent);font-family:var(--font-mono);font-size:12px}
+#may19-w .lt2{stroke:var(--color-muted);stroke-width:1.2;stroke-dasharray:4 4}
+#may19-w .back{stroke:var(--color-accent);stroke-width:1.5}
+#may19-w .stop{stroke:var(--color-rule-2);stroke-width:1;stroke-dasharray:2 3}
+#may19-w .brace{stroke:var(--color-muted);stroke-width:1;fill:none}
+#may19-w .ring{fill:none;stroke:var(--color-ink);stroke-width:1.2}
+#may19-w .over{stroke:var(--color-ink);stroke-width:2.5}
+#may19-w .under{stroke:var(--color-ink-2);stroke-opacity:.5;stroke-width:2}
+#may19-w .held{stroke:var(--color-accent);stroke-opacity:.6;stroke-width:2}
+#may19-w .d-over{fill:var(--color-ink)}
+#may19-w .d-under{fill:var(--color-paper);stroke:var(--color-ink-2);stroke-width:1.5}
+#may19-w .d-held{fill:var(--color-accent)}
+#may19-w .d-lt1{fill:var(--color-paper);stroke:var(--color-accent);stroke-width:2}
+</style>
+<text class="row" x="0" y="14">19 May, what I ran</text>
+<line class="lt2" x1="0" y1="85" x2="402" y2="85"/>
+<line class="back" x1="0" y1="103" x2="402" y2="103"/>
+<text class="note" x="512" y="89" text-anchor="end">LT2 180</text>
+<text class="lime-t" x="512" y="119" text-anchor="end">back off</text>
+<text class="lime-t" x="512" y="133" text-anchor="end">178</text>
+<path class="brace" d="M6 39 V34 H56 V39"/>
+<text class="note" x="31.0" y="29" text-anchor="middle">ramp-up</text>
+<line class="under" x1="14" y1="103" x2="14" y2="148"/>
+<circle class="d-under" cx="14" cy="148" r="5"><title>Rep 1: 4:48 /km, 173 bpm</title></circle>
+<text class="num" x="14" y="195" text-anchor="middle">1</text>
+<text class="pace" x="14" y="210" text-anchor="middle">4:48</text>
+<line class="over" x1="48" y1="103" x2="48" y2="94"/>
+<circle class="d-over" cx="48" cy="94" r="5"><title>Rep 2: 4:43 /km, 179 bpm</title></circle>
+<text class="num" x="48" y="195" text-anchor="middle">2</text>
+<text class="pace" x="48" y="210" text-anchor="middle">4:43</text>
+<line class="over" x1="82" y1="103" x2="82" y2="76"/>
+<circle class="d-over" cx="82" cy="76" r="5"><title>Rep 3: 4:44 /km, 181 bpm</title></circle>
+<text class="num" x="82" y="195" text-anchor="middle">3</text>
+<text class="pace" x="82" y="210" text-anchor="middle">4:44</text>
+<line class="over" x1="116" y1="103" x2="116" y2="58"/>
+<circle class="d-over" cx="116" cy="58" r="5"><title>Rep 4: 4:36 /km, 183 bpm</title></circle>
+<text class="num" x="116" y="195" text-anchor="middle">4</text>
+<text class="pace" x="116" y="210" text-anchor="middle">4:36</text>
+<line class="over" x1="150" y1="103" x2="150" y2="76"/>
+<circle class="d-over" cx="150" cy="76" r="5"><title>Rep 5: 5:04 /km, 181 bpm</title></circle>
+<text class="num" x="150" y="195" text-anchor="middle">5</text>
+<text class="pace" x="150" y="210" text-anchor="middle">5:04</text>
+<line class="over" x1="184" y1="103" x2="184" y2="67"/>
+<circle class="d-over" cx="184" cy="67" r="5"><title>Rep 6: 4:48 /km, 182 bpm</title></circle>
+<text class="num" x="184" y="195" text-anchor="middle">6</text>
+<text class="pace" x="184" y="210" text-anchor="middle">4:48</text>
+<line class="under" x1="218" y1="103" x2="218" y2="139"/>
+<circle class="d-under" cx="218" cy="139" r="5"><title>Rep 7: 5:28 /km, 174 bpm</title></circle>
+<text class="num hot" x="218" y="195" text-anchor="middle">7</text>
+<text class="pace hot" x="218" y="210" text-anchor="middle">5:28</text>
+<line class="under" x1="252" y1="103" x2="252" y2="130"/>
+<circle class="d-under" cx="252" cy="130" r="5"><title>Rep 8: 5:22 /km, 175 bpm</title></circle>
+<text class="num" x="252" y="195" text-anchor="middle">8</text>
+<text class="pace" x="252" y="210" text-anchor="middle">5:22</text>
+<line class="under" x1="286" y1="103" x2="286" y2="130"/>
+<circle class="d-under" cx="286" cy="130" r="5"><title>Rep 9: 5:15 /km, 175 bpm</title></circle>
+<text class="num" x="286" y="195" text-anchor="middle">9</text>
+<text class="pace" x="286" y="210" text-anchor="middle">5:15</text>
+<line class="over" x1="320" y1="103" x2="320" y2="76"/>
+<circle class="d-over" cx="320" cy="76" r="5"><title>Rep 10: 5:01 /km, 181 bpm</title></circle>
+<text class="num" x="320" y="195" text-anchor="middle">10</text>
+<text class="pace" x="320" y="210" text-anchor="middle">5:01</text>
+<line class="over" x1="354" y1="103" x2="354" y2="76"/>
+<circle class="d-over" cx="354" cy="76" r="5"><title>Rep 11: 4:49 /km, 181 bpm</title></circle>
+<text class="num" x="354" y="195" text-anchor="middle">11</text>
+<text class="pace" x="354" y="210" text-anchor="middle">4:49</text>
+<line class="over" x1="388" y1="103" x2="388" y2="58"/>
+<circle class="d-over" cx="388" cy="58" r="5"><title>Rep 12: 4:45 /km, 183 bpm</title></circle>
+<text class="num" x="388" y="195" text-anchor="middle">12</text>
+<text class="pace" x="388" y="210" text-anchor="middle">4:45</text>
+<circle class="ring" cx="48" cy="94" r="10"/>
+<text class="sign" x="48" y="125" text-anchor="middle">the sign</text>
+<line class="stop" x1="201.0" y1="40" x2="201.0" y2="175"/>
+<text class="note" x="201.0" y="30" text-anchor="middle">long stop</text>
+<text class="row" x="0" y="249">Coached: called at rep 2, one rep at LT1, pick up</text>
+<line class="lt2" x1="0" y1="320" x2="402" y2="320"/>
+<line class="back" x1="0" y1="338" x2="402" y2="338"/>
+<text class="note" x="512" y="324" text-anchor="end">LT2 180</text>
+<text class="lime-t" x="512" y="354" text-anchor="end">back off</text>
+<text class="lime-t" x="512" y="368" text-anchor="end">178</text>
+
+<line class="under" x1="14" y1="338" x2="14" y2="383"/>
+<circle class="d-under" cx="14" cy="383" r="5"><title>Rep 1: 4:48 /km, 173 bpm</title></circle>
+<text class="num" x="14" y="430" text-anchor="middle">1</text>
+<text class="pace" x="14" y="445" text-anchor="middle">4:48</text>
+<line class="over" x1="48" y1="338" x2="48" y2="329"/>
+<circle class="d-over" cx="48" cy="329" r="5"><title>Rep 2: 4:43 /km, 179 bpm</title></circle>
+<text class="num" x="48" y="430" text-anchor="middle">2</text>
+<text class="pace" x="48" y="445" text-anchor="middle">4:43</text>
+<line class="held" x1="82" y1="338" x2="82" y2="392"/>
+<circle class="d-lt1" cx="82" cy="392" r="5"><title>Rep 3: 5:35 /km, 172 bpm (estimate)</title></circle>
+<text class="num" x="82" y="430" text-anchor="middle">3</text>
+<text class="pace" x="82" y="445" text-anchor="middle">5:35</text>
+<line class="held" x1="116" y1="338" x2="116" y2="347"/>
+<circle class="d-held" cx="116" cy="347" r="5"><title>Rep 4: 5:10 /km, 177 bpm (estimate)</title></circle>
+<text class="num" x="116" y="430" text-anchor="middle">4</text>
+<text class="pace" x="116" y="445" text-anchor="middle">5:10</text>
+<line class="held" x1="150" y1="338" x2="150" y2="347"/>
+<circle class="d-held" cx="150" cy="347" r="5"><title>Rep 5: 5:10 /km, 177 bpm (estimate)</title></circle>
+<text class="num" x="150" y="430" text-anchor="middle">5</text>
+<text class="pace" x="150" y="445" text-anchor="middle">5:10</text>
+<line class="held" x1="184" y1="338" x2="184" y2="347"/>
+<circle class="d-held" cx="184" cy="347" r="5"><title>Rep 6: 5:10 /km, 177 bpm (estimate)</title></circle>
+<text class="num" x="184" y="430" text-anchor="middle">6</text>
+<text class="pace" x="184" y="445" text-anchor="middle">5:10</text>
+<line class="held" x1="218" y1="338" x2="218" y2="347"/>
+<circle class="d-held" cx="218" cy="347" r="5"><title>Rep 7: 5:10 /km, 177 bpm (estimate)</title></circle>
+<text class="num" x="218" y="430" text-anchor="middle">7</text>
+<text class="pace" x="218" y="445" text-anchor="middle">5:10</text>
+<circle class="d-held" cx="252" cy="338" r="5"><title>Rep 8: 5:10 /km, 178 bpm (estimate)</title></circle>
+<text class="num" x="252" y="430" text-anchor="middle">8</text>
+<text class="pace" x="252" y="445" text-anchor="middle">5:10</text>
+<circle class="d-held" cx="286" cy="338" r="5"><title>Rep 9: 5:10 /km, 178 bpm (estimate)</title></circle>
+<text class="num" x="286" y="430" text-anchor="middle">9</text>
+<text class="pace" x="286" y="445" text-anchor="middle">5:10</text>
+<circle class="d-held" cx="320" cy="338" r="5"><title>Rep 10: 5:10 /km, 178 bpm (estimate)</title></circle>
+<text class="num" x="320" y="430" text-anchor="middle">10</text>
+<text class="pace" x="320" y="445" text-anchor="middle">5:10</text>
+<circle class="d-held" cx="354" cy="338" r="5"><title>Rep 11: 5:10 /km, 178 bpm (estimate)</title></circle>
+<text class="num" x="354" y="430" text-anchor="middle">11</text>
+<text class="pace" x="354" y="445" text-anchor="middle">5:10</text>
+<circle class="d-held" cx="388" cy="338" r="5"><title>Rep 12: 5:10 /km, 178 bpm (estimate)</title></circle>
+<text class="num" x="388" y="430" text-anchor="middle">12</text>
+<text class="pace" x="388" y="445" text-anchor="middle">5:10</text>
+<circle class="ring" cx="48" cy="329" r="10"/>
+<text class="sign" x="48" y="360" text-anchor="middle">call it</text>
+<text class="lime-t" x="82" y="414" text-anchor="middle">LT1</text>
+</svg>
