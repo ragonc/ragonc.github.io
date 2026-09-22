@@ -30,6 +30,10 @@ const face = (name, cssVariable, file, weight, fallbacks) => ({
 export default defineConfig({
 	site: 'https://runthenumbers.ch',
 	integrations: [mdx(), sitemap()],
+	// No syntax highlighting: Shiki's default theme (github-dark) writes its own
+	// background and text colours inline on every <pre>, which overrides the
+	// tokens in global.css. Every code block on the site is plain text anyway.
+	markdown: { syntaxHighlight: false },
 	redirects: {
 		// The section was called "argo-tools" until the 2026-09 redesign. Those URLs
 		// are out in the world; keep them working.

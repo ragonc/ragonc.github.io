@@ -4,6 +4,8 @@
  * paper oklch(14% 0.012 142) · accent oklch(88% 0.19 122) lime
  * display Sofia Sans Condensed · body Newsreader · labels Sofia Sans · code JetBrains Mono
  * axes: dark / display-condensed-roman / chromatic-lime · enrichment: Tier-A canvas route network
+ * 2026-09-23: section heads (.head) moved up to --text-2xl, above the rows;
+ *   code blocks lost Shiki's inline colours; inline code wraps on phones.
  * 2026-09-23: Big Shoulders Display read as childish. Display is Sofia Sans
  *   Condensed, labels Sofia Sans. The name and every heading are in capitals,
  *   labels in sentence case (Carmine's calls). JetBrains Mono is kept for code alone.
@@ -51,7 +53,9 @@
   /* The masthead is the only display-scale type on the home page now. 7.25rem
      is 116px at desktop: 152px read as too big, 88px as too small. */
   --text-display: clamp(2.75rem, 11.6vw, 7.25rem);
-  --text-2xl: clamp(1.6rem, 3.6vw, 2.2rem);
+  /* Section heads. Its floor (30px) sits above .row-name (25.6px), so an h2
+     never reads smaller than the h3 rows under it. */
+  --text-2xl: clamp(1.875rem, 3.2vw, 2.5rem);
   --text-xl: clamp(1.25rem, 2.4vw, 1.5rem);
   --text-base: 1.0625rem;
   --text-sm: 0.9375rem;
@@ -201,7 +205,7 @@ h1, h2, h3 { font-style: normal; text-wrap: balance; }
 /* ── Section heads ─────────────────────────────────────────────────────── */
 .head {
   margin: var(--space-2xl) 0 var(--space-md); overflow-wrap: anywhere; min-width: 0;
-  font-family: var(--font-display); font-weight: 600; font-size: var(--text-xl); letter-spacing: 0.02em; text-transform: uppercase; color: var(--color-ink);
+  font-family: var(--font-display); font-weight: 700; font-size: var(--text-2xl); line-height: 1.04; letter-spacing: 0.02em; text-transform: uppercase; color: var(--color-ink);
 }
 /* Built is the first thing under the masthead now, so it does not need the
    full section gap above it — the masthead's own rule already separates them. */
@@ -389,6 +393,9 @@ a.row:hover .row-name { color: var(--color-accent); }
 .article .body code {
   font-family: var(--font-mono); font-size: 0.85em;
   background: var(--color-paper-3); padding: 0.1em 0.35em; border-radius: var(--radius-chip);
+  /* A path has no break opportunity, and html clips overflow, so without this
+     the end of a long path is cut off on a 320px phone. */
+  overflow-wrap: anywhere;
 }
 .pull {
   margin: var(--space-lg) 0; padding-left: var(--space-md);
@@ -475,7 +482,7 @@ a.row:hover .row-name { color: var(--color-accent); }
   background: var(--color-paper-2); border-left: 2px solid var(--color-rule-2);
   overflow-x: auto; font-size: var(--text-sm); line-height: 1.5;
 }
-.article .body pre code { background: none; padding: 0; }
+.article .body pre code { background: none; padding: 0; overflow-wrap: normal; }
 .article .body hr { margin: var(--space-lg) 0; border: 0; border-top: var(--rule-hair) solid var(--color-rule); }
 .article .body img { max-width: 100%; height: auto; }
 /* Charts in a post (src/components/Chart.astro): inline SVG, so they use the

@@ -226,6 +226,17 @@ wraps the name onto two lines on a phone.
 Numbers that sit in a column get `.tnum` for tabular figures; chart text is
 tabular by default.
 
+**A section head is larger than the rows under it.** *(23.09.2026)* `.head`
+("Built", "Written") is `--text-2xl`, 30px on a phone and 40px at desktop, weight
+700; `.row-name` is 25.6px. It was `--text-xl`, which set the h2 smaller than the
+h3 project names under it (hallmark audit, 23.09.2026).
+
+**Code is plain.** *(23.09.2026)* `markdown.syntaxHighlight` is off in
+`astro.config.mjs`: Shiki's default theme painted GitHub's `#24292e` inline on
+every `<pre>`, over the `--color-paper-2` ground. Inline code wraps inside long
+paths (`overflow-wrap: anywhere`), because `html` clips overflow and a 320px
+phone would otherwise lose the end of the path.
+
 ## The background
 
 `src/components/RouteMap.astro` draws a faint street network on a `<canvas>`,
