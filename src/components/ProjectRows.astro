@@ -2,6 +2,7 @@
 // The portfolio rows — hairlines, not cards. The home page and the Projects index
 // render the same list from the same collection, so the two can never disagree.
 import type { CollectionEntry } from 'astro:content';
+import { liveValue } from '../data/live';
 
 interface Props {
 	projects: CollectionEntry<'projects'>[];
@@ -36,7 +37,7 @@ const linkFor = (p: CollectionEntry<'projects'>) =>
 					</div>
 					{p.data.figure && (
 						<div class="row-figure tnum">
-							<b>{p.data.figure.value}</b>
+							<b>{liveValue(p.data.figure.value, p.data.figure.live)}</b>
 							<span>{p.data.figure.label}</span>
 						</div>
 					)}

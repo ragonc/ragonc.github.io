@@ -3,6 +3,7 @@
 // the numbered walkthrough, and the screenshot — or the box where it will go.
 import type { CollectionEntry } from 'astro:content';
 import Base from './Base.astro';
+import { liveValue } from '../data/live';
 import { SITE_TITLE } from '../consts';
 
 type Props = CollectionEntry<'projects'>['data'];
@@ -26,7 +27,7 @@ const { title, description, standfirst, state, link, spec, steps, placeholder, s
 					{spec.map((s) => (
 						<div>
 							<dt>{s.term}</dt>
-							<dd>{s.value}</dd>
+							<dd>{liveValue(s.value, s.live)}</dd>
 						</div>
 					))}
 				</dl>
