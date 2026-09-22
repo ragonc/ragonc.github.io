@@ -5,8 +5,8 @@
  * display Sofia Sans Condensed · body Newsreader · labels Sofia Sans · code JetBrains Mono
  * axes: dark / display-condensed-roman / chromatic-lime · enrichment: Tier-A canvas route network
  * 2026-09-23: Big Shoulders Display read as childish. Display is Sofia Sans
- *   Condensed, labels Sofia Sans, both in sentence case; only the name stays in
- *   capitals (Carmine's call). JetBrains Mono is kept for code alone.
+ *   Condensed, labels Sofia Sans. The name and every heading are in capitals,
+ *   labels in sentence case (Carmine's calls). JetBrains Mono is kept for code alone.
  * motion: hover-underline · chip-fill · row-tint (the stat counter was cut: a figure
  *         caught mid-count reads as broken in a thumbnail, and the number is the point)
  * tone: utilitarian-editorial · anchor hue: lime 122
@@ -201,7 +201,7 @@ h1, h2, h3 { font-style: normal; text-wrap: balance; }
 /* ── Section heads ─────────────────────────────────────────────────────── */
 .head {
   margin: var(--space-2xl) 0 var(--space-md); overflow-wrap: anywhere; min-width: 0;
-  font-family: var(--font-display); font-weight: 600; font-size: var(--text-xl); letter-spacing: -0.01em; color: var(--color-ink);
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-xl); letter-spacing: 0.02em; text-transform: uppercase; color: var(--color-ink);
 }
 /* Built is the first thing under the masthead now, so it does not need the
    full section gap above it — the masthead's own rule already separates them. */
@@ -244,7 +244,7 @@ a.row:hover { background: var(--color-paper-3); }
 a.row:hover .row-name { color: var(--color-accent); }
 .row-name {
   margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.6rem;
-  line-height: 1.08; letter-spacing: -0.01em;
+  line-height: 1.04; letter-spacing: 0.02em; text-transform: uppercase;
   transition: color var(--dur-fast) var(--ease-out);
 }
 .row > div { min-width: 0; }
@@ -306,8 +306,8 @@ a.row:hover .row-name { color: var(--color-accent); }
 .proj-head { padding-block: var(--space-xl) var(--space-lg); }
 .proj-head h1 {
   margin: 0; font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.08;
-  letter-spacing: -0.01em; overflow-wrap: anywhere; min-width: 0;
+  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.04;
+  letter-spacing: 0.02em; text-transform: uppercase; overflow-wrap: anywhere; min-width: 0;
 }
 .proj-head .standfirst { margin: var(--space-md) 0 0; max-width: 46ch; font-size: 1.125rem; color: var(--color-ink-2); }
 .proj-head .statebar { display: flex; gap: var(--space-sm); align-items: center; flex-wrap: wrap; margin-top: var(--space-md); }
@@ -365,7 +365,7 @@ a.row:hover .row-name { color: var(--color-accent); }
 .article header { max-width: 38rem; }
 .article h1 {
   margin: 0; font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(2.1rem, 6.5vw, 3.4rem); line-height: 1.08; letter-spacing: -0.01em;
+  font-size: clamp(2.1rem, 6.5vw, 3.4rem); line-height: 1.04; letter-spacing: 0.02em; text-transform: uppercase;
   overflow-wrap: anywhere; min-width: 0;
 }
 .article .byline {
@@ -384,7 +384,7 @@ a.row:hover .row-name { color: var(--color-accent); }
 .article .body h2 {
   margin: var(--space-xl) 0 var(--space-sm);
   font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(1.5rem, 3.2vw, 1.875rem); line-height: 1.1; letter-spacing: -0.01em;
+  font-size: clamp(1.5rem, 3.2vw, 1.875rem); line-height: 1.1; letter-spacing: 0.02em; text-transform: uppercase;
 }
 .article .body code {
   font-family: var(--font-mono); font-size: 0.85em;
@@ -425,7 +425,7 @@ a.row:hover .row-name { color: var(--color-accent); }
 .about h1 {
   margin: 0 0 var(--space-md);
   font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.08; letter-spacing: -0.01em;
+  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.04; letter-spacing: 0.02em; text-transform: uppercase;
   overflow-wrap: anywhere; min-width: 0;
 }
 .about p { margin: 0 0 var(--space-md); }
@@ -439,7 +439,7 @@ a.row:hover .row-name { color: var(--color-accent); }
 .page-head h1 {
   margin: 0;
   font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.08; letter-spacing: -0.01em;
+  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.04; letter-spacing: 0.02em; text-transform: uppercase;
   overflow-wrap: anywhere; min-width: 0;
 }
 .page-head .lede { margin: var(--space-md) 0 0; max-width: 46ch; font-size: 1.125rem; color: var(--color-ink-2); }
@@ -448,7 +448,7 @@ a.row:hover .row-name { color: var(--color-accent); }
 /* On an index the reads list carries its description; on the home page it
    stays one line. Same list, one extra row in the grid. */
 .reads.is-index a { grid-template-areas: "title when" "desc desc"; row-gap: var(--space-2xs); padding-block: var(--space-md); }
-.reads.is-index a > span:first-child { grid-area: title; font-size: var(--text-xl); font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; line-height: 1.1; }
+.reads.is-index a > span:first-child { grid-area: title; font-size: var(--text-xl); font-family: var(--font-display); font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1.1; }
 .reads.is-index .when { grid-area: when; }
 .reads.is-index .desc { grid-area: desc; margin: 0; max-width: 60ch; color: var(--color-muted); font-size: var(--text-sm); line-height: 1.5; }
 
@@ -458,7 +458,7 @@ a.row:hover .row-name { color: var(--color-accent); }
 .article .body li { margin-bottom: var(--space-xs); }
 .article .body h3 {
   margin: var(--space-lg) 0 var(--space-xs);
-  font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em;
+  font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; letter-spacing: 0.02em; text-transform: uppercase;
 }
 .article .body a { color: var(--color-accent); text-decoration: none; border-bottom: 1px solid var(--color-rule-2); }
 .article .body a:hover { border-bottom-color: var(--color-accent); }

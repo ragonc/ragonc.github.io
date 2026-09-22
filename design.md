@@ -206,9 +206,12 @@ before touching a weight range.
   colophon, and every word inside a chart.
 - **JetBrains Mono** (`--font-mono`) — code, and nothing else.
 
-**Only the name is in capitals.** *(23.09.2026)* "RUN THE NUMBERS", in the
-masthead and the nav wordmark, is set in capitals whatever the face — Carmine's
-call. Headings, labels and the nav are sentence case with near-zero tracking.
+**The name and every heading are in capitals; labels are not.** *(23.09.2026)*
+"RUN THE NUMBERS", in the masthead and the nav wordmark, is set in capitals
+whatever the face, and so is every heading: page titles, post titles, section
+heads, project names, h2 and h3 in posts. Carmine's calls, the same day. Labels,
+the nav, meta lines, pull quotes and chart text stay sentence case with near-zero
+tracking, so the capitals are the headings' alone.
 
 **Why Big Shoulders went.** *(23.09.2026)* After the first running post Carmine
 found the type childish: Big Shoulders Display in capitals on every heading, and
