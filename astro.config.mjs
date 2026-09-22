@@ -4,7 +4,7 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import { defineConfig, fontProviders } from 'astro/config';
 
-// The three faces of the design system. Self-hosted from src/assets/fonts rather
+// The four faces of the design system. Self-hosted from src/assets/fonts rather
 // than fetched from Google at build time: the colophon promises no tracking, and
 // the build should not depend on someone else's API being up. Each file is the
 // latin subset of the variable font — see src/assets/fonts/README.md before
@@ -39,11 +39,14 @@ export default defineConfig({
 		'/blog': '/writing/',
 	},
 	fonts: [
-		face('Big Shoulders Display', '--font-display', 'big-shoulders-display-latin.woff2', '400 800', [
-			'Archivo Narrow',
+		face('Sofia Sans Condensed', '--font-display', 'sofia-sans-condensed-latin.woff2', '400 800', [
+			'Arial Narrow',
 			'sans-serif',
 		]),
 		face('Newsreader', '--font-body', 'newsreader-latin.woff2', '300 600', ['Georgia', 'serif']),
+		face('Sofia Sans', '--font-label', 'sofia-sans-latin.woff2', '400 800', ['system-ui', 'sans-serif']),
+		// Code only: inline code and code blocks in posts. Labels moved to Sofia Sans
+		// on 23.09.2026.
 		face('JetBrains Mono', '--font-mono', 'jetbrains-mono-latin.woff2', '400 700', [
 			'ui-monospace',
 			'monospace',

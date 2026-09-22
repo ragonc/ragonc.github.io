@@ -3,8 +3,8 @@
 <desc id="lact-w-d">The typical lactate curve, not measured data: flat at easy speeds, rising from LT1 (mine 5:30 to 5:40 per km, 152 bpm), climbing steeply after LT2, classically near 4 mmol/L (mine 4:20 to 4:30 per km, 180 bpm). A dashed curve shows the same shape after training, shifted to faster speeds.</desc>
 <style>
 #lact-w .fig{fill:var(--color-ink);font-family:var(--font-display);font-weight:700}
-#lact-w .lbl{fill:var(--color-ink-2);font-family:var(--font-mono);font-size:12px}
-#lact-w .mut{fill:var(--color-muted);font-family:var(--font-mono);font-size:12px}
+#lact-w .lbl{fill:var(--color-ink-2);font-family:var(--font-label);font-size:12px}
+#lact-w .mut{fill:var(--color-muted);font-family:var(--font-label);font-size:12px}
 #lact-w .lime{fill:var(--color-accent)}
 #lact-w .lead{stroke:var(--color-ink-2);stroke-opacity:.45;stroke-width:1}
 #lact-w .grid{stroke:var(--color-rule);stroke-width:1}
