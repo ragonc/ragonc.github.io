@@ -4,8 +4,9 @@ description: "A phone form that writes training sets straight into the sheet I a
 state: 'live'
 meta: 'gymlog.runthenumbers.ch · Flask · Google Sheets'
 figure:
-  value: '57'
+  value: '51'
   label: 'sets in'
+  live: 'sets'
 order: 10
 standfirst: 'A phone form that appends training sets to a Google Sheet. Built because the sheet was already the system and the phone keyboard was the problem.'
 link:
@@ -15,7 +16,7 @@ spec:
   - { term: 'Runs on', value: 'a small VPS, behind Caddy' }
   - { term: 'Built with', value: 'Flask · Sheets API · SQLite' }
   - { term: 'Screens', value: '11' }
-  - { term: 'Sets logged', value: '57' }
+  - { term: 'Sets logged', value: '51', live: 'sets' }
   - { term: 'Type floor', value: '17px · 56px taps' }
   - { term: 'Written', value: 'Sep 2026, still changing' }
 steps:

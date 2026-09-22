@@ -29,13 +29,28 @@ const projects = defineCollection({
 		/** The rest of the meta line, after the state chip. */
 		meta: z.string(),
 		/** The number on the right of the row. Real, or left out. */
-		figure: z.object({ value: z.string(), label: z.string() }).optional(),
+		figure: z
+			.object({
+				value: z.string(),
+				label: z.string(),
+				/** Read from GymLog at build time; `value` is the fallback. See src/data/live.ts. */
+				live: z.enum(['sets', 'sessions']).optional(),
+			})
+			.optional(),
 		/** Lower sorts first. */
 		order: z.number().default(50),
 		/** The standfirst on the project's own page. */
 		standfirst: z.string().optional(),
 		/** The spec table on the project's own page. */
-		spec: z.array(z.object({ term: z.string(), value: z.string() })).default([]),
+		spec: z
+			.array(
+				z.object({
+					term: z.string(),
+					value: z.string(),
+					live: z.enum(['sets', 'sessions']).optional(),
+				}),
+			)
+			.default([]),
 		/** The numbered walkthrough under the prose. */
 		steps: z.array(z.string()).default([]),
 		/** A call-to-action next to the state chip. */

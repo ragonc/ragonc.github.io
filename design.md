@@ -40,9 +40,13 @@ What stays:
 - **`src/data/figures.ts` is still on disk, and nothing reads it.** The
   `data/data.db` → JSON export is still the plan, and that file is where it lands.
   Do not delete it on the grounds that it is unused.
-- **The figures inside the project rows** — 57 sets in, 3 write-ups, 327
+- **The figures inside the project rows** — sets in, 3 write-ups, 327
   activities on file — are part of the rows, not the stat display that went. They
-  are still real and still come from the database.
+  are still real. Since 22.09.2026 the GymLog sets are read from
+  `gymlog.runthenumbers.ch/stats.json` at build time (`src/data/live.ts`), and the
+  deploy runs every morning to keep them fresh; a figure marked `live:` in its
+  content file falls back to the value typed beside it when GymLog cannot be
+  reached. The other two are still typed in.
 - **Rule 6 below still holds.** Nothing on this site is invented. Removing the
   figures does not license inventing anything to replace them.
 

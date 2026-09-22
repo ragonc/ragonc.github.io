@@ -3,6 +3,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # Every morning, so the figures read from GymLog (src/data/live.ts) are at most a
+  # day old. 04:00 UTC is 06:00 in Zurich in summer, 05:00 in winter.
+  schedule:
+    - cron: '0 4 * * *'
 permissions:
   contents: read
   pages: write
