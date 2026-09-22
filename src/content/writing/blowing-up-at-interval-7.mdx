@@ -10,12 +10,16 @@ import pacesWide from '../../assets/charts/paces-wide.svg?raw';
 import pacesNarrow from '../../assets/charts/paces-narrow.svg?raw';
 import lactateWide from '../../assets/charts/lactate-wide.svg?raw';
 import lactateNarrow from '../../assets/charts/lactate-narrow.svg?raw';
+import may19Wide from '../../assets/charts/may19-wide.svg?raw';
+import may19Narrow from '../../assets/charts/may19-narrow.svg?raw';
+
+<Chart wide={may19Wide} narrow={may19Narrow} title="19 May, 12 x 800 m" caption="Average heart rate per rep against my back-off line. Top: what I ran. Bottom: the same session called at rep 2, estimated from that day's heart rate, not a run." />
 
 "You're going too fast."
 
 I've heard that from my coach more times than I can count, and for a long time I nodded without listening. I'd been running for two or three years and thought I knew how to train. There was some arrogance in that.
 
-Intervals in a group pull you along. You see people ahead pushing, and a few reps in, already tired, you push anyway. Then you reach interval 7 of 10 and something gives. "Right, guys, I'm done for today." On your way out the coach calls over: "Finish the workout. Go slower, but finish it." So, out of pride, you finish it, with nothing left, and you pay for it the next day.
+Intervals in a group pull you along. You see people ahead pushing, and a few reps in, already tired, you push anyway. Then you reach interval 7 of 12 and something gives. "Right, guys, I'm done for today." On your way out the coach calls over: "Finish the workout. Go slower, but finish it." So, out of pride, you finish it, with nothing left, and you pay for it the next day.
 
 Eventually I had to admit my coach was right. I wasn't short of effort. I was putting too much of it in the wrong places. And I couldn't have told you what heart rate or pace "threshold" or "zone 2" meant for me. So I gave my numbers to Claude.
 
@@ -34,6 +38,12 @@ Train well and both lines move to faster paces.
 It worked from two runs: my last 10K race and a 5K time trial. The number that mattered most was LT2 at 180 bpm, about 4:20-4:30 per km. The rest is in the chart. These are estimates from watch data, not a lab test, but for the first time I had numbers to aim at.
 
 <Chart wide={pacesWide} narrow={pacesNarrow} title="Where my paces sit" caption="Per km, easy to all out, worked out by AI from my 10K and 5K." />
+
+## 19 May, looked at again
+
+Then I pulled an old session off my watch: 19 May, 12 x 800 m at 10K pace minus 10 seconds, so 4:16 per km, with a minute's rest. For a session that long you ramp up, and I did: the first two reps at 4:48 and 4:43. What I missed is that the ramp-up was already the answer. Reps that easy should sit well under LT2, and by the second one my heart rate was at 179, where my 10K sits. Rep 7 broke at 5:28.
+
+It was a pace workout, but my heart rate was telling me it was a bad day, and I didn't listen. A coach would have called it at rep 2: forget 4:16, run the rest by heart rate. One rep at LT1, 5:30-5:40, to bring it down, then pick up to whatever keeps each rep under 178. That day, that was about 5:10: at 4:40 I was 8 beats higher than the week before.
 
 ## What changed
 
@@ -56,4 +66,4 @@ Work out my LT1, my LT2 and my zone 2.
 ```
 
 3. No recent race? Sign up for a 10K, or run one all out on your own.
-4. Then turn every session your coach gives you into a heart rate or a pace on your watch.
+4. Then turn every session your coach gives you into a heart rate or a pace on your watch, with a back-off line a couple of beats under LT2.
