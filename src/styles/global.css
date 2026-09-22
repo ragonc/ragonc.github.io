@@ -50,8 +50,8 @@
   --map-lake:   oklch(11.5% 0.010 160);
   --map-road:   oklch(24% 0.010 142);
   --map-street: oklch(94% 0.012 142);
-  --map-veil-centre: color-mix(in oklch, var(--color-paper) 80%, transparent);
-  --map-veil-edge:   color-mix(in oklch, var(--color-paper) 35%, transparent);
+  --map-veil-centre: color-mix(in oklch, var(--color-paper) 72%, transparent);
+  --map-veil-edge:   color-mix(in oklch, var(--color-paper) 27%, transparent);
 
   /* --font-display, --font-body, --font-label and --font-mono are emitted by <Font> in
      BaseHead.astro; the families are declared once, in astro.config.mjs. */
