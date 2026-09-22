@@ -1,0 +1,36 @@
+<!doctype html><canvas id="c"></canvas>
+<script>
+// Draws data/geo.json in the --map-* colours passed in, and returns two WebPs:
+// the landscape map and a portrait crop around the lake's tip.
+async function render(t) {
+  const g = await (await fetch('data/geo.json')).json();
+  const c = document.getElementById('c'); c.width = g.W; c.height = g.H;
+  const x = c.getContext('2d');
+  const path = (layer) => { for (const p of g.layers[layer] || []) { x.moveTo(p[0], p[1]); for (let i = 2; i < p.length; i += 2) x.lineTo(p[i], p[i + 1]); } };
+  const fill = (layer, colour) => { x.beginPath(); path(layer); path(layer + '_hole'); x.fillStyle = colour; x.fill('evenodd'); };
+  const stroke = (layer, colour, width, alpha) => { x.beginPath(); path(layer); x.strokeStyle = colour; x.lineWidth = width; x.globalAlpha = alpha; x.lineCap = x.lineJoin = 'round'; x.stroke(); x.globalAlpha = 1; };
+  x.fillStyle = t.ground; x.fillRect(0, 0, g.W, g.H);
+  fill('wood', t.wood);
+  fill('water', t.lake);
+  stroke('river', t.lake, 10, 1);
+  stroke('stream', t.lake, 1.5, 0.8);
+  stroke('motorway', t.road, 3, 0.6);
+  // Streets add up: where they are dense, the city glows a little brighter.
+  x.globalCompositeOperation = 'lighter';
+  x.filter = 'blur(2px)';
+  stroke('service', t.street, 3, t.alpha * 0.35);
+  stroke('path', t.street, 3, t.alpha * 0.6);
+  stroke('street', t.street, 4, t.alpha * 0.8);
+  stroke('major', t.street, 6, t.alpha * 1.1);
+  x.filter = 'none';
+  stroke('service', t.street, 0.8, t.alpha * 0.6);
+  stroke('path', t.street, 1, t.alpha);
+  stroke('street', t.street, 1.3, t.alpha * 1.3);
+  stroke('major', t.street, 1.8, t.alpha * 1.6);
+  x.globalCompositeOperation = 'source-over';
+  const land = c.toDataURL('image/webp', 0.7);
+  const p = document.createElement('canvas'); p.width = 1200; p.height = 1800;
+  p.getContext('2d').drawImage(c, 746, 94, 1200, 1800, 0, 0, 1200, 1800);
+  return { land, portrait: p.toDataURL('image/webp', 0.7) };
+}
+</script>

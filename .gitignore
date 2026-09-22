@@ -24,3 +24,6 @@ pnpm-debug.log*
 .idea/
 
 drafts/.Rhistory
+
+# OpenStreetMap download for scripts/citymap (large, re-fetchable)
+scripts/citymap/data/
