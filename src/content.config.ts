@@ -34,7 +34,7 @@ const projects = defineCollection({
 				value: z.string(),
 				label: z.string(),
 				/** Read from GymLog at build time; `value` is the fallback. See src/data/live.ts. */
-				live: z.enum(['sets', 'sessions']).optional(),
+				live: z.enum(['sets', 'sessions', 'writing']).optional(),
 			})
 			.optional(),
 		/** Lower sorts first. */
@@ -47,7 +47,7 @@ const projects = defineCollection({
 				z.object({
 					term: z.string(),
 					value: z.string(),
-					live: z.enum(['sets', 'sessions']).optional(),
+					live: z.enum(['sets', 'sessions', 'writing']).optional(),
 				}),
 			)
 			.default([]),
