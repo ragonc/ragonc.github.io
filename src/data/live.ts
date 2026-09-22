@@ -6,6 +6,7 @@
 // build does not fail: every live figure falls back to the value typed next to it
 // in the content file, and the colophon falls back to LAST_MEASURED.
 
+import { getCollection } from 'astro:content';
 import { LAST_MEASURED } from '../consts';
 
 const STATS_URL = 'https://gymlog.runthenumbers.ch/stats.json';
@@ -17,8 +18,9 @@ export interface GymLogStats {
 	as_of: string;
 }
 
-/** The fields a content file may point a figure at with `live:`. */
-export type LiveKey = 'sets' | 'sessions';
+/** The fields a content file may point a figure at with `live:`. `writing` is the
+ *  number of posts in the writing collection, counted at build time. */
+export type LiveKey = 'sets' | 'sessions' | 'writing';
 
 async function read(): Promise<GymLogStats | null> {
 	try {
@@ -37,8 +39,11 @@ async function read(): Promise<GymLogStats | null> {
 
 export const GYMLOG = await read();
 
+const WRITING = (await getCollection('writing')).length;
+
 /** A live figure as it should read, or the typed-in one when there is none. */
 export function liveValue(fallback: string, key?: LiveKey): string {
+	if (key === 'writing') return WRITING.toLocaleString('en-US');
 	if (!key || !GYMLOG) return fallback;
 	return GYMLOG[key].toLocaleString('en-US');
 }

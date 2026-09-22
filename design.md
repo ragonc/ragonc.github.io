@@ -46,7 +46,9 @@ What stays:
   `gymlog.runthenumbers.ch/stats.json` at build time (`src/data/live.ts`), and the
   deploy runs every morning to keep them fresh; a figure marked `live:` in its
   content file falls back to the value typed beside it when GymLog cannot be
-  reached. The other two are still typed in.
+  reached. The write-ups are counted from the writing collection at build time
+  (`live: 'writing'`). The 327 activities are still typed in and carry their own
+  date in the label, because the colophon's date follows the GymLog read.
 - **Rule 6 below still holds.** Nothing on this site is invented. Removing the
   figures does not license inventing anything to replace them.
 

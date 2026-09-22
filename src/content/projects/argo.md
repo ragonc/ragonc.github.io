@@ -6,6 +6,7 @@ meta: 'daily · three write-ups below'
 figure:
   value: '3'
   label: 'write-ups'
+  live: 'writing'
 order: 20
 # No page of its own: the writing is the page. The row opens the section rather
 # than a project page of restated summary.
