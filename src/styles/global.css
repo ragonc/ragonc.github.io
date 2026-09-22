@@ -2,8 +2,11 @@
  * genre: editorial (dark register) · route: custom (tuned)
  * vibe: "scoreboard on a night map, measured, lime"
  * paper oklch(14% 0.012 142) · accent oklch(88% 0.19 122) lime
- * display Big Shoulders Display · body Newsreader · mono JetBrains Mono
+ * display Sofia Sans Condensed · body Newsreader · labels Sofia Sans · code JetBrains Mono
  * axes: dark / display-condensed-roman / chromatic-lime · enrichment: Tier-A canvas route network
+ * 2026-09-23: Big Shoulders Display read as childish. Display is Sofia Sans
+ *   Condensed, labels Sofia Sans, both in sentence case; only the name stays in
+ *   capitals (Carmine's call). JetBrains Mono is kept for code alone.
  * motion: hover-underline · chip-fill · row-tint (the stat counter was cut: a figure
  *         caught mid-count reads as broken in a thumbnail, and the number is the point)
  * tone: utilitarian-editorial · anchor hue: lime 122
@@ -39,7 +42,7 @@
   --map-hot:   oklch(88% 0.19 122 / 0.16);
   --map-hot-2: oklch(88% 0.19 122 / 0.1);
 
-  /* --font-display, --font-body and --font-mono are emitted by <Font> in
+  /* --font-display, --font-body, --font-label and --font-mono are emitted by <Font> in
      BaseHead.astro; the families are declared once, in astro.config.mjs. */
 
   --space-2xs: 0.25rem; --space-xs: 0.5rem; --space-sm: 0.75rem;
@@ -105,16 +108,16 @@ h1, h2, h3 { font-style: normal; text-wrap: balance; }
   border-bottom: var(--rule-hair) solid var(--color-rule);
 }
 .n9 .mark {
-  font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; line-height: 1;
-  letter-spacing: 0.01em; text-transform: uppercase; text-decoration: none;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; line-height: 1;
+  letter-spacing: 0.03em; text-transform: uppercase; text-decoration: none;
 }
 /* .hl replaces the mockup's <s>: same lime word, without telling a screen
    reader the site's own name has been deleted. */
 .n9 .mark .hl { color: var(--color-accent); }
 .n9 nav { display: flex; gap: clamp(0.9rem, 3vw, 2rem); flex-wrap: wrap; }
 .n9 nav a {
-  font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 400;
-  letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-ink-2);
+  font-family: var(--font-label); font-size: var(--text-xs); font-weight: 400;
+  letter-spacing: 0.01em; color: var(--color-ink-2);
   text-decoration: none; padding-block: var(--space-2xs); line-height: 1;
   border-bottom: 2px solid transparent;
   transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
@@ -148,21 +151,22 @@ h1, h2, h3 { font-style: normal; text-wrap: balance; }
 .masthead .chip { align-self: center; }
 .masthead h1 {
   margin: 0;
-  font-family: var(--font-display); font-weight: 800;
+  font-family: var(--font-display); font-weight: 700;
   /* 1.02 is the floor for an all-caps display head: uppercase has no
      descenders, so below 1.0 the cap-tops of a wrapped second line collide
      with the first. It wraps at 320px, so this is not hypothetical. */
   font-size: var(--text-display); line-height: 1.02;
-  letter-spacing: -0.015em; text-transform: uppercase;
+  letter-spacing: 0.02em; text-transform: uppercase;
   overflow-wrap: anywhere; min-width: 0;
 }
 .masthead h1 .hl { color: var(--color-accent); }
 .masthead p {
   /* The paragraph is exactly as wide as the name above it, so the two centred
-     blocks share both edges. The name's ink measures 6.18px per px of
-     font-size — that constant is specific to "RUN THE NUMBERS" in Big
-     Shoulders Display 800 at -0.015em tracking, so re-measure it if the site
-     is ever renamed: render the h1, take the width of its line box, divide by
+     blocks share both edges. The name's ink measures 7.08px per px of
+     font-size — that constant is specific to "RUN THE NUMBERS" in Sofia
+     Sans Condensed 700 at 0.02em tracking (measured 23.09.2026; it was 6.18
+     in Big Shoulders Display), so re-measure it if the site is renamed or
+     the face changes: render the h1, take the width of its line box, divide by
      the computed font-size.
 
      The 38ch floor is not decoration. Below ~600px the name is narrower than
@@ -170,7 +174,7 @@ h1, h2, h3 { font-style: normal; text-wrap: balance; }
      paragraph as a column of scraps; the floor hands the width back to the
      page container, which is what it did before. */
   margin: var(--space-md) auto 0;
-  max-width: max(38ch, calc(var(--text-display) * 6.18));
+  max-width: max(38ch, calc(var(--text-display) * 7.08));
   text-wrap: pretty;
   /* 1.25rem is not a taste call, it is the size that makes this sentence fall
      evenly into the width above. Matching the name's width and avoiding a
@@ -197,8 +201,7 @@ h1, h2, h3 { font-style: normal; text-wrap: balance; }
 /* ── Section heads ─────────────────────────────────────────────────────── */
 .head {
   margin: var(--space-2xl) 0 var(--space-md); overflow-wrap: anywhere; min-width: 0;
-  font-family: var(--font-display); font-weight: 600; font-size: var(--text-xl);
-  text-transform: uppercase; letter-spacing: 0.03em; color: var(--color-ink);
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-xl); letter-spacing: -0.01em; color: var(--color-ink);
 }
 /* Built is the first thing under the masthead now, so it does not need the
    full section gap above it — the masthead's own rule already separates them. */
@@ -213,8 +216,8 @@ h1, h2, h3 { font-style: normal; text-wrap: balance; }
   display: inline-block; margin-top: var(--space-md);
   padding: 0.6em 1.1em; border: var(--rule-hair) solid var(--color-accent);
   border-radius: var(--radius-chip);
-  font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
+  font-family: var(--font-label); font-size: var(--text-xs); font-weight: 700;
+  letter-spacing: 0.01em;
   color: var(--color-accent); text-decoration: none; white-space: nowrap;
   transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
 }
@@ -241,7 +244,7 @@ a.row:hover { background: var(--color-paper-3); }
 a.row:hover .row-name { color: var(--color-accent); }
 .row-name {
   margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.6rem;
-  line-height: 1.05; text-transform: uppercase; letter-spacing: 0.01em;
+  line-height: 1.08; letter-spacing: -0.01em;
   transition: color var(--dur-fast) var(--ease-out);
 }
 .row > div { min-width: 0; }
@@ -249,8 +252,8 @@ a.row:hover .row-name { color: var(--color-accent); }
 .row-name { overflow-wrap: anywhere; }
 .row-meta {
   margin: var(--space-xs) 0 0;
-  font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted);
-  letter-spacing: 0.06em;
+  font-family: var(--font-label); font-size: var(--text-xs); color: var(--color-muted);
+  letter-spacing: 0.01em;
 }
 .row-figure { text-align: right; }
 .row-figure b {
@@ -259,13 +262,13 @@ a.row:hover .row-name { color: var(--color-accent); }
 }
 .row-figure span {
   display: block; margin-top: var(--space-2xs);
-  font-family: var(--font-mono); font-size: var(--text-xs);
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted);
+  font-family: var(--font-label); font-size: var(--text-xs);
+  letter-spacing: 0.01em; color: var(--color-muted);
 }
 .state {
   display: inline-block; padding: 0.25em 0.6em;
-  font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase; border-radius: var(--radius-chip);
+  font-family: var(--font-label); font-size: 0.6875rem; font-weight: 700;
+  letter-spacing: 0.01em; border-radius: var(--radius-chip);
 }
 .state.live { background: var(--color-accent); color: var(--color-accent-ink); }
 .state.parked { border: var(--rule-hair) solid var(--color-rule-2); color: var(--color-muted); }
@@ -282,7 +285,7 @@ a.row:hover .row-name { color: var(--color-accent); }
 .reads a:hover { color: var(--color-accent); }
 .reads a > span:first-child { min-width: 0; overflow-wrap: anywhere; }
 .reads .when {
-  font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted);
+  font-family: var(--font-label); font-size: var(--text-xs); color: var(--color-muted);
   white-space: nowrap;
 }
 
@@ -292,18 +295,18 @@ a.row:hover .row-name { color: var(--color-accent); }
   border-top: 2px solid var(--color-rule-2);
   display: grid; grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
   gap: var(--space-md) var(--space-lg);
-  font-family: var(--font-mono); font-size: var(--text-xs); line-height: 1.75;
-  color: var(--color-muted); letter-spacing: 0.03em;
+  font-family: var(--font-label); font-size: var(--text-xs); line-height: 1.75;
+  color: var(--color-muted); letter-spacing: 0.01em;
 }
-.ft4 b { display: block; color: var(--color-ink-2); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+.ft4 b { display: block; color: var(--color-ink-2); font-weight: 700; letter-spacing: 0.01em; }
 .ft4 a { color: var(--color-ink-2); text-decoration: none; border-bottom: var(--rule-hair) solid var(--color-rule-2); }
 .ft4 a:hover { color: var(--color-accent); border-bottom-color: var(--color-accent); }
 
 /* ── Project page ──────────────────────────────────────────────────────── */
 .proj-head { padding-block: var(--space-xl) var(--space-lg); }
 .proj-head h1 {
-  margin: 0; font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.02; text-transform: uppercase;
+  margin: 0; font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.08;
   letter-spacing: -0.01em; overflow-wrap: anywhere; min-width: 0;
 }
 .proj-head .standfirst { margin: var(--space-md) 0 0; max-width: 46ch; font-size: 1.125rem; color: var(--color-ink-2); }
@@ -318,8 +321,8 @@ a.row:hover .row-name { color: var(--color-accent); }
   padding: var(--space-sm) var(--space-md) var(--space-sm) 0;
   border-bottom: var(--rule-hair) solid var(--color-rule);
 }
-.spec dt { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); }
-.spec dd { margin: 0; text-align: right; font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-ink); }
+.spec dt { font-family: var(--font-label); font-size: var(--text-xs); letter-spacing: 0.01em; color: var(--color-muted); }
+.spec dd { margin: 0; text-align: right; font-family: var(--font-label); font-size: var(--text-sm); color: var(--color-ink); }
 .prose { max-width: 36rem; }
 .prose p { margin: 0 0 var(--space-md); }
 .steps { counter-reset: step; list-style: none; margin: var(--space-lg) 0 0; padding: 0; max-width: 40rem; }
@@ -331,8 +334,8 @@ a.row:hover .row-name { color: var(--color-accent); }
 .steps li::before {
   content: counter(step, decimal-leading-zero);
   position: absolute; left: 0; top: var(--space-sm);
-  font-family: var(--font-mono); font-size: var(--text-xs); font-weight: 700;
-  color: var(--color-accent); letter-spacing: 0.08em;
+  font-family: var(--font-label); font-size: var(--text-xs); font-weight: 700;
+  color: var(--color-accent); letter-spacing: 0.01em;
 }
 .placeholder {
   margin: var(--space-lg) 0 0; max-width: 100%;
@@ -342,8 +345,8 @@ a.row:hover .row-name { color: var(--color-accent); }
   background: var(--color-paper-3);
 }
 .placeholder p {
-  margin: 0; font-family: var(--font-mono); font-size: var(--text-xs);
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted);
+  margin: 0; font-family: var(--font-label); font-size: var(--text-xs);
+  letter-spacing: 0.01em; color: var(--color-muted);
 }
 /* The screenshot, in the placeholder's slot. Real pixels behind one hairline —
    no drawn frame, no shadow: the image carries its own ground. */
@@ -353,8 +356,8 @@ a.row:hover .row-name { color: var(--color-accent); }
   border: var(--rule-hair) solid var(--color-rule);
 }
 .shot figcaption {
-  margin-top: var(--space-xs); font-family: var(--font-mono); font-size: var(--text-xs);
-  letter-spacing: 0.06em; color: var(--color-muted);
+  margin-top: var(--space-xs); font-family: var(--font-label); font-size: var(--text-xs);
+  letter-spacing: 0.01em; color: var(--color-muted);
 }
 
 /* ── Article page ──────────────────────────────────────────────────────── */
@@ -362,16 +365,15 @@ a.row:hover .row-name { color: var(--color-accent); }
 .article header { max-width: 38rem; }
 .article h1 {
   margin: 0; font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(2.1rem, 6.5vw, 3.4rem); line-height: 1.04;
-  text-transform: uppercase; letter-spacing: 0.005em;
+  font-size: clamp(2.1rem, 6.5vw, 3.4rem); line-height: 1.08; letter-spacing: -0.01em;
   overflow-wrap: anywhere; min-width: 0;
 }
 .article .byline {
   margin: var(--space-md) 0 0; padding-block: var(--space-xs);
   border-top: var(--rule-hair) solid var(--color-rule);
   border-bottom: var(--rule-hair) solid var(--color-rule);
-  font-family: var(--font-mono); font-size: var(--text-xs);
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted);
+  font-family: var(--font-label); font-size: var(--text-xs);
+  letter-spacing: 0.01em; color: var(--color-muted);
 }
 .article .standfirst {
   margin: var(--space-md) 0 var(--space-lg); max-width: 34rem;
@@ -382,8 +384,7 @@ a.row:hover .row-name { color: var(--color-accent); }
 .article .body h2 {
   margin: var(--space-xl) 0 var(--space-sm);
   font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(1.5rem, 3.2vw, 1.875rem); line-height: 1.1;
-  text-transform: uppercase; letter-spacing: 0.03em;
+  font-size: clamp(1.5rem, 3.2vw, 1.875rem); line-height: 1.1; letter-spacing: -0.01em;
 }
 .article .body code {
   font-family: var(--font-mono); font-size: 0.85em;
@@ -393,7 +394,7 @@ a.row:hover .row-name { color: var(--color-accent); }
   margin: var(--space-lg) 0; padding-left: var(--space-md);
   border-left: 2px solid var(--color-accent);
   font-family: var(--font-display); font-weight: 400; font-size: var(--text-xl);
-  line-height: 1.15; text-transform: uppercase; letter-spacing: 0.01em;
+  line-height: 1.15; letter-spacing: -0.01em;
   color: var(--color-ink);
 }
 
@@ -410,22 +411,21 @@ a.row:hover .row-name { color: var(--color-accent); }
 .skip {
   position: absolute; left: -9999px;
   background: var(--color-accent); color: var(--color-accent-ink);
-  font-family: var(--font-mono); font-size: var(--text-xs); padding: var(--space-xs);
+  font-family: var(--font-label); font-size: var(--text-xs); padding: var(--space-xs);
 }
 .skip:focus { left: var(--space-md); top: var(--space-md); z-index: 30; }
 .back-link {
   display: inline-block; margin-top: var(--space-lg);
-  font-family: var(--font-mono); font-size: var(--text-xs);
-  letter-spacing: 0.12em; text-transform: uppercase;
+  font-family: var(--font-label); font-size: var(--text-xs);
+  letter-spacing: 0.01em;
   color: var(--color-muted); text-decoration: none;
 }
 .back-link:hover { color: var(--color-accent); }
 .about { padding-block: var(--space-xl) var(--space-lg); max-width: 36rem; }
 .about h1 {
   margin: 0 0 var(--space-md);
-  font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.02;
-  text-transform: uppercase; letter-spacing: -0.01em;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.08; letter-spacing: -0.01em;
   overflow-wrap: anywhere; min-width: 0;
 }
 .about p { margin: 0 0 var(--space-md); }
@@ -438,9 +438,8 @@ a.row:hover .row-name { color: var(--color-accent); }
 .page-head { padding-block: var(--space-xl) var(--space-lg); }
 .page-head h1 {
   margin: 0;
-  font-family: var(--font-display); font-weight: 800;
-  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.02;
-  text-transform: uppercase; letter-spacing: -0.01em;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(2.6rem, 9vw, 5rem); line-height: 1.08; letter-spacing: -0.01em;
   overflow-wrap: anywhere; min-width: 0;
 }
 .page-head .lede { margin: var(--space-md) 0 0; max-width: 46ch; font-size: 1.125rem; color: var(--color-ink-2); }
@@ -449,7 +448,7 @@ a.row:hover .row-name { color: var(--color-accent); }
 /* On an index the reads list carries its description; on the home page it
    stays one line. Same list, one extra row in the grid. */
 .reads.is-index a { grid-template-areas: "title when" "desc desc"; row-gap: var(--space-2xs); padding-block: var(--space-md); }
-.reads.is-index a > span:first-child { grid-area: title; font-size: var(--text-xl); font-family: var(--font-display); font-weight: 600; text-transform: uppercase; letter-spacing: 0.01em; line-height: 1.1; }
+.reads.is-index a > span:first-child { grid-area: title; font-size: var(--text-xl); font-family: var(--font-display); font-weight: 600; letter-spacing: -0.01em; line-height: 1.1; }
 .reads.is-index .when { grid-area: when; }
 .reads.is-index .desc { grid-area: desc; margin: 0; max-width: 60ch; color: var(--color-muted); font-size: var(--text-sm); line-height: 1.5; }
 
@@ -459,8 +458,7 @@ a.row:hover .row-name { color: var(--color-accent); }
 .article .body li { margin-bottom: var(--space-xs); }
 .article .body h3 {
   margin: var(--space-lg) 0 var(--space-xs);
-  font-family: var(--font-display); font-weight: 600; font-size: 1.25rem;
-  text-transform: uppercase; letter-spacing: 0.03em;
+  font-family: var(--font-display); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em;
 }
 .article .body a { color: var(--color-accent); text-decoration: none; border-bottom: 1px solid var(--color-rule-2); }
 .article .body a:hover { border-bottom-color: var(--color-accent); }
@@ -468,7 +466,7 @@ a.row:hover .row-name { color: var(--color-accent); }
   margin: var(--space-lg) 0; padding-left: var(--space-md);
   border-left: 2px solid var(--color-accent);
   font-family: var(--font-display); font-weight: 400; font-size: var(--text-xl);
-  line-height: 1.15; text-transform: uppercase; letter-spacing: 0.01em;
+  line-height: 1.15; letter-spacing: -0.01em;
   color: var(--color-ink);
 }
 .article .body blockquote p { margin: 0; }
@@ -487,11 +485,12 @@ a.row:hover .row-name { color: var(--color-accent); }
 .article .body .chart { margin: var(--space-lg) 0; }
 .chart figcaption { margin-bottom: var(--space-sm); }
 .chart .chart-title {
-  display: block; font-family: var(--font-mono); font-size: var(--text-xs);
-  letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted);
+  display: block; font-family: var(--font-label); font-size: var(--text-xs);
+  letter-spacing: 0.01em; color: var(--color-muted);
 }
 .chart .chart-caption { display: block; margin-top: var(--space-2xs); font-size: var(--text-sm); line-height: 1.45; color: var(--color-ink-2); }
 .chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart svg text { font-variant-numeric: tabular-nums; }
 .chart-narrow { display: none; }
 @media (max-width: 37.5rem) {
   .chart-wide { display: none; }
@@ -500,4 +499,4 @@ a.row:hover .row-name { color: var(--color-accent); }
 }
 .article .body table { width: 100%; border-collapse: collapse; margin: 0 0 var(--space-md); font-size: var(--text-sm); }
 .article .body th, .article .body td { text-align: left; padding: var(--space-xs) var(--space-md) var(--space-xs) 0; border-bottom: var(--rule-hair) solid var(--color-rule); }
-.article .body th { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); font-weight: 400; }
+.article .body th { font-family: var(--font-label); font-size: var(--text-xs); letter-spacing: 0.01em; color: var(--color-muted); font-weight: 400; }

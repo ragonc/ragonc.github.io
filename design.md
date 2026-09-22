@@ -97,17 +97,17 @@ left-aligned layout, and the rows are never centred: a row with a name left and 
 figure right stops working the moment it is.
 
 **The paragraph's measure is derived from the name, not chosen.** Its max-width
-is `max(38ch, calc(var(--text-display) * 6.18))`, so the two centred blocks share
-both edges at every viewport: 717px and 65ch at desktop, 551px at 768, 430px at
-600. Do not replace that calc with a number — it would be right at one width and
+is `max(38ch, calc(var(--text-display) * 7.08))`, so the two centred blocks share
+both edges at every viewport: 822px at desktop, still two lines. Do not replace that calc with a number — it would be right at one width and
 wrong at all the others.
 
 Three things about it, so the next change does not undo them by accident:
 
-- **6.18 is measured, not guessed.** It is the ink width of "RUN THE NUMBERS" per
-  px of font-size, in Big Shoulders Display 800 at -0.015em. Rename the site and
-  it has to be measured again: render the h1, take its line-box width, divide by
-  the computed font-size.
+- **7.08 is measured, not guessed.** It is the ink width of "RUN THE NUMBERS" per
+  px of font-size, in Sofia Sans Condensed 700 at 0.02em (23.09.2026; it was 6.18
+  in Big Shoulders Display). Rename the site or change the face and it has to be
+  measured again: render the h1, take its line-box width, divide by the computed
+  font-size.
 - **The 38ch floor is load-bearing.** Below ~600px the name is narrower than any
   readable measure — 27ch at 390px — so matching it there would set the paragraph
   as a column of scraps. The floor hands the width back to the page container.
@@ -196,16 +196,32 @@ stylesheet and no component-scoped CSS: one file, one system.
 
 ## Type
 
-Three faces, self-hosted from `src/assets/fonts` — never loaded from Google at
+Four faces, self-hosted from `src/assets/fonts` — never loaded from Google at
 runtime, because the colophon promises no tracking. See that folder's `README.md`
 before touching a weight range.
 
-- **Big Shoulders Display** (`--font-display`) — figures, headings, the wordmark.
-  Condensed, uppercase, tight tracking.
+- **Sofia Sans Condensed** (`--font-display`) — the name, headings, figures.
 - **Newsreader** (`--font-body`) — running text.
-- **JetBrains Mono** (`--font-mono`) — labels, meta lines, dates, the colophon.
+- **Sofia Sans** (`--font-label`) — labels, the nav, meta lines, dates, the
+  colophon, and every word inside a chart.
+- **JetBrains Mono** (`--font-mono`) — code, and nothing else.
 
-Numbers that sit in a column get `.tnum` for tabular figures.
+**Only the name is in capitals.** *(23.09.2026)* "RUN THE NUMBERS", in the
+masthead and the nav wordmark, is set in capitals whatever the face — Carmine's
+call. Headings, labels and the nav are sentence case with near-zero tracking.
+
+**Why Big Shoulders went.** *(23.09.2026)* After the first running post Carmine
+found the type childish: Big Shoulders Display in capitals on every heading, and
+JetBrains Mono in spaced capitals on every label, were three loud voices at once.
+Sofia Sans Condensed keeps the condensed, scoreboard figures without the
+sports-jersey look; Sofia Sans at normal width carries the small text, so labels
+and charts share one family with the headings. Direction 10 of the comparison in
+the argo-os repo (`projects/runthenumbers/docs/designs/2026-09-22-type-directions.html`),
+chosen by Carmine after comparing it with Archivo, the GymLog face, which
+wraps the name onto two lines on a phone.
+
+Numbers that sit in a column get `.tnum` for tabular figures; chart text is
+tabular by default.
 
 ## The background
 

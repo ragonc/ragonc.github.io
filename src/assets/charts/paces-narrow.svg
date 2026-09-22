@@ -3,8 +3,8 @@
 <desc id="paces-n-d">My running paces on one line from 7:00 to 4:00 per km. Zone 2: 6:30 to 6:50. LT1: 5:30 to 5:40 at 152 bpm. Predicted half marathon: 4:38, 1:37 to 1:38. LT2: 4:20 to 4:30 at 180 bpm. The runs it used: a 10K race at 4:26 and 180 bpm, a 5K time trial at 4:13 and 181 bpm. AI estimates from Garmin data.</desc>
 <style>
 #paces-n .fig{fill:var(--color-ink);font-family:var(--font-display);font-weight:700}
-#paces-n .lbl{fill:var(--color-ink-2);font-family:var(--font-mono);font-size:12px}
-#paces-n .mut{fill:var(--color-muted);font-family:var(--font-mono);font-size:12px}
+#paces-n .lbl{fill:var(--color-ink-2);font-family:var(--font-label);font-size:12px}
+#paces-n .mut{fill:var(--color-muted);font-family:var(--font-label);font-size:12px}
 #paces-n .lime{fill:var(--color-accent)}
 #paces-n .lead{stroke:var(--color-ink-2);stroke-opacity:.45;stroke-width:1}
 #paces-n .grid{stroke:var(--color-rule);stroke-width:1}
