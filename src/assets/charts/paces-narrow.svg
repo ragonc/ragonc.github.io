@@ -1,0 +1,43 @@
+<svg id="paces-n" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 343 384" role="img" aria-labelledby="paces-n-t paces-n-d" width="100%">
+<title id="paces-n-t">Where my paces sit</title>
+<desc id="paces-n-d">My running paces on one line from 7:00 to 4:00 per km. Zone 2: 6:30 to 6:50. LT1: 5:30 to 5:40 at 152 bpm. Predicted half marathon: 4:38, 1:37 to 1:38. LT2: 4:20 to 4:30 at 180 bpm. The runs it used: a 10K race at 4:26 and 180 bpm, a 5K time trial at 4:13 and 181 bpm. AI estimates from Garmin data.</desc>
+<style>
+#paces-n .fig{fill:var(--color-ink);font-family:var(--font-display);font-weight:700}
+#paces-n .lbl{fill:var(--color-ink-2);font-family:var(--font-mono);font-size:12px}
+#paces-n .mut{fill:var(--color-muted);font-family:var(--font-mono);font-size:12px}
+#paces-n .lime{fill:var(--color-accent)}
+#paces-n .lead{stroke:var(--color-ink-2);stroke-opacity:.45;stroke-width:1}
+#paces-n .grid{stroke:var(--color-rule);stroke-width:1}
+#paces-n .axis{stroke:var(--color-rule-2);stroke-width:1}
+#paces-n .run{fill:var(--color-paper);stroke:var(--color-ink-2);stroke-width:2}
+#paces-n .curve{fill:none;stroke:var(--color-ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+#paces-n .trained{fill:none;stroke:var(--color-ink-2);stroke-opacity:.7;stroke-width:2;stroke-dasharray:6 5;stroke-linecap:round}
+#paces-n .tpt{fill:var(--color-paper);stroke:var(--color-ink-2);stroke-width:2}
+#paces-n .pt{fill:var(--color-accent);stroke:var(--color-paper);stroke-width:3}
+#paces-n .drop{stroke:var(--color-accent);stroke-opacity:.6;stroke-width:1.5;stroke-dasharray:4 4}
+#paces-n .shift{stroke:var(--color-accent);stroke-width:1.5}
+#paces-n .head{fill:var(--color-accent)}
+</style>
+<text class="mut" x="0" y="16">7:00/km</text>
+<text class="mut" x="343" y="16" text-anchor="end">4:00/km</text>
+<text class="lbl" x="270.6" y="16" text-anchor="middle">HM</text>
+<rect class="lime" x="0.0" y="26" width="17.1" height="14" fill-opacity="0.3"></rect>
+<rect class="lime" x="19.1" y="26" width="38.1" height="14" fill-opacity="0.75"><title>Zone 2</title></rect>
+<rect class="lime" x="59.2" y="26" width="91.3" height="14" fill-opacity="0.3"></rect>
+<rect class="lime" x="152.4" y="26" width="19.1" height="14" fill-opacity="1"><title>LT1</title></rect>
+<rect class="lime" x="173.5" y="26" width="110.3" height="14" fill-opacity="0.5"></rect>
+<rect class="lime" x="285.8" y="26" width="19.1" height="14" fill-opacity="1"><title>LT2</title></rect>
+<rect class="lime" x="306.9" y="26" width="36.1" height="14" fill-opacity="0.65"></rect>
+<line x1="270.6" y1="21" x2="270.6" y2="45" stroke="var(--color-ink)" stroke-width="2"/>
+<text class="lbl" x="38.1" y="58" text-anchor="middle">Z2</text>
+<text class="lbl" x="162.0" y="58" text-anchor="middle">LT1</text>
+<text class="lbl" x="295.4" y="58" text-anchor="middle">LT2</text>
+<line class="grid" x1="0" y1="84" x2="343" y2="84"/><text class="lbl" x="0" y="104">Zone 2</text><text class="fig" x="0" y="132" font-size="28">6:30-6:50</text><text class="mut" x="343" y="132" text-anchor="end">easy runs</text>
+<line class="grid" x1="0" y1="142" x2="343" y2="142"/><text class="lbl" x="0" y="162">LT1</text><text class="fig" x="0" y="190" font-size="28">5:30-5:40</text><text class="mut" x="343" y="190" text-anchor="end">152 bpm</text>
+<line class="grid" x1="0" y1="200" x2="343" y2="200"/><text class="lbl" x="0" y="220">Half marathon</text><text class="fig" x="0" y="248" font-size="28">4:38</text><text class="mut" x="343" y="248" text-anchor="end">predicted 1:37-1:38</text>
+<line class="grid" x1="0" y1="258" x2="343" y2="258"/><text class="lbl" x="0" y="278">LT2</text><text class="fig" x="0" y="306" font-size="28">4:20-4:30</text><text class="mut" x="343" y="306" text-anchor="end">180 bpm</text>
+<line class="grid" x1="0" y1="316" x2="343" y2="316"/>
+<text class="mut" x="0" y="338">The runs it used</text>
+<text class="lbl" x="0" y="358">10K race 4:26, 180 bpm</text>
+<text class="lbl" x="0" y="376">5K time trial 4:13, 181 bpm</text>
+</svg>

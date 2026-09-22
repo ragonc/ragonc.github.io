@@ -190,6 +190,9 @@ stylesheet and no component-scoped CSS: one file, one system.
 9. **The words are Carmine's.** No filler copy, no invented testimonials, and no
    summary written to fill a page — a project with nothing to say yet has no page
    (`page: false` in its frontmatter), not a page of filler.
+10. **In a chart, lime is the highlight** *(22.09.2026)*. Charts are the one place
+   lime marks data rather than links: the thresholds and the zones that matter.
+   Everything else in a chart is ink or muted, and a chart holds no link.
 
 ## Type
 
@@ -244,6 +247,18 @@ the row; `figure` is the number on the right and must be real or left out;
 `order` sorts. Set `page: false` when there is nothing to say on a page of its own
 — give it an `href` and the row links there, leave `href` out and the row is plain
 text. The full shape is in `src/content.config.ts`.
+
+**A chart in a post** *(22.09.2026)* — the post becomes `.mdx` and uses
+`src/components/Chart.astro`, which inlines the SVG. Never an `<img>`: an image
+cannot load the site's fonts, so it falls back to system faces and the page ends up
+with six. The SVGs live in `src/assets/charts/`, in two drawings: a wide one and a
+narrow one about 343 units across for phones, so labels render at 12px. Inside them,
+fonts and colours come from `var(--font-*)` and `var(--color-*)`, and every style
+rule is scoped to the SVG's own `id`, so two charts on one page never override
+each other. No background rect and no title in the drawing: the title and a
+one-line caption go in the figcaption, which keeps the h2 the loudest thing in the
+section. A chart that shows a typical shape rather than measured data says so in
+its caption (rule 6).
 
 **A new component** — first check whether `.row`, `.reads` or `.spec` already does
 it. The system is deliberately small.

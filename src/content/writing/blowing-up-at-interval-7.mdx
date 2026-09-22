@@ -5,6 +5,12 @@ pubDate: 'Sep 22 2026'
 byline: 'dictated by me in Italian, edited into English with Claude'
 ---
 
+import Chart from '../../components/Chart.astro';
+import pacesWide from '../../assets/charts/paces-wide.svg?raw';
+import pacesNarrow from '../../assets/charts/paces-narrow.svg?raw';
+import lactateWide from '../../assets/charts/lactate-wide.svg?raw';
+import lactateNarrow from '../../assets/charts/lactate-narrow.svg?raw';
+
 "You're going too fast."
 
 I've heard that from my coach more times than I can count, and for a long time I nodded without listening. I'd been running for two or three years and thought I knew how to train. There was some arrogance in that.
@@ -15,7 +21,7 @@ Eventually I had to admit my coach was right. I wasn't short of effort. I was pu
 
 ## The two numbers
 
-![The classic lactate curve: flat at easy speeds, rising from LT1 (mine: 5:30-5:40/km, 152 bpm), climbing steeply after LT2 (mine: 4:20-4:30/km, 180 bpm). A dashed curve shows the same shape after training, shifted to faster speeds. Typical shape, not my lab data.](/images/lactate-curve.svg)
+<Chart wide={lactateWide} narrow={lactateNarrow} title="How lactate climbs" caption="Flat when you run easy, steep past LT2, and training moves both to faster paces. The typical shape, not my lab data." />
 
 **LT1** is the pace or heart rate where the lactate in your blood starts to rise. Below it you're running easy. Zone 2 lives there, and so should most of your running.
 
@@ -27,7 +33,7 @@ Train well and both lines move to faster paces.
 
 It worked from two runs: my last 10K race and a 5K time trial. The number that mattered most was LT2 at 180 bpm, about 4:20-4:30 per km. The rest is in the chart. These are estimates from watch data, not a lab test, but for the first time I had numbers to aim at.
 
-![My paces on one line from 7:00 to 4:00 per km: zone 2 at 6:30-6:50, LT1 at 5:30-5:40 (152 bpm), half marathon at 4:38, LT2 at 4:20-4:30 (180 bpm). Below, the two runs it used: a 10K race at 4:26 and a 5K time trial at 4:13.](/images/paces-where-they-sit.svg)
+<Chart wide={pacesWide} narrow={pacesNarrow} title="Where my paces sit" caption="Per km, easy to all out, worked out by AI from my 10K and 5K." />
 
 ## What changed
 

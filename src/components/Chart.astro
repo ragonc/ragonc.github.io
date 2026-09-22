@@ -1,0 +1,21 @@
+---
+// A chart inside a post. The SVG is inlined, not an <img>, so it renders in the
+// page's own fonts and colour tokens (an <img> cannot reach them). Each chart
+// comes as a wide and a narrow drawing: the narrow one is laid out for phones,
+// so its labels land at 12px instead of shrinking to specks. See design.md, Charts.
+interface Props {
+	wide: string;
+	narrow: string;
+	title: string;
+	caption: string;
+}
+const { wide, narrow, title, caption } = Astro.props;
+---
+<figure class="chart">
+	<figcaption>
+		<span class="chart-title">{title}</span>
+		<span class="chart-caption">{caption}</span>
+	</figcaption>
+	<div class="chart-wide" set:html={wide} />
+	<div class="chart-narrow" set:html={narrow} />
+</figure>
