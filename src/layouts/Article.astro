@@ -1,19 +1,24 @@
 ---
 // The article page. Kicker rule above and below the byline, a standfirst, then a
-// 34rem measure. No hero image: the design never had one.
+// 34rem measure. No hero image: the design never had one. From 64rem up, the
+// space beside the measure carries the post's own section heads as a sticky
+// contents rail (23.09.2026) — nothing in it that the post does not already say.
+import type { MarkdownHeading } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import Base from './Base.astro';
 import { SITE_TITLE } from '../consts';
 
-type Props = CollectionEntry<'writing'>['data'];
+type Props = CollectionEntry<'writing'>['data'] & { sections?: MarkdownHeading[] };
 
-const { title, description, pubDate, updatedDate, byline } = Astro.props;
+const { title, description, pubDate, updatedDate, byline, sections = [] } = Astro.props;
+// One heading is not a table of contents.
+const rail = sections.length >= 2;
 const swiss = (d: Date) =>
 	d.toLocaleDateString('de-CH', { day: '2-digit', month: '2-digit', year: 'numeric' });
 ---
 
 <Base title={`${title} — ${SITE_TITLE}`} description={description}>
-	<article class="article">
+	<article class:list={['article', { 'has-rail': rail }]}>
 		<header>
 			<h1>{title}</h1>
 			<p class="byline">
@@ -28,5 +33,20 @@ const swiss = (d: Date) =>
 			<slot />
 			<a class="back-link" href="/writing/">&larr; the rest of the writing</a>
 		</div>
+
+		{
+			rail && (
+				<nav class="rail" aria-label="In this post">
+					<p class="rail-label">In this post</p>
+					<ol>
+						{sections.map((h) => (
+							<li>
+								<a href={`#${h.slug}`}>{h.text}</a>
+							</li>
+						))}
+					</ol>
+				</nav>
+			)
+		}
 	</article>
 </Base>

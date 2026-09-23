@@ -26,9 +26,9 @@
 <text class="row" x="0" y="14">19 May, what I ran</text>
 <line class="lt2" x1="0" y1="85" x2="266" y2="85"/>
 <line class="back" x1="0" y1="103" x2="266" y2="103"/>
-<text class="note" x="343" y="89" text-anchor="end">LT2 180</text>
-<text class="lime-t" x="343" y="119" text-anchor="end">back off</text>
-<text class="lime-t" x="343" y="133" text-anchor="end">178</text>
+<text class="note" x="274" y="89">LT2 180</text>
+<text class="lime-t" x="274" y="107">back off</text>
+<text class="lime-t" x="274" y="121">178</text>
 <path class="brace" d="M2 39 V34 H40 V39"/>
 <text class="note" x="21.0" y="29" text-anchor="start">ramp-up</text>
 <line class="under" x1="10" y1="103" x2="10" y2="148"/>
@@ -75,9 +75,9 @@
 <text class="row" x="0" y="249">Coached: called at rep 2</text>
 <line class="lt2" x1="0" y1="320" x2="266" y2="320"/>
 <line class="back" x1="0" y1="338" x2="266" y2="338"/>
-<text class="note" x="343" y="324" text-anchor="end">LT2 180</text>
-<text class="lime-t" x="343" y="354" text-anchor="end">back off</text>
-<text class="lime-t" x="343" y="368" text-anchor="end">178</text>
+<text class="note" x="274" y="324">LT2 180</text>
+<text class="lime-t" x="274" y="342">back off</text>
+<text class="lime-t" x="274" y="356">178</text>
 
 <line class="under" x1="10" y1="338" x2="10" y2="383"/>
 <circle class="d-under" cx="10" cy="383" r="5"><title>Rep 1: 4:48 /km, 173 bpm</title></circle>
