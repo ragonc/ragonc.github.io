@@ -158,7 +158,7 @@ Those URLs are out in the world; they stay working.
 | Project rows | `.rows`, `.row` | home, `/projects/` |
 | Writing list | `.reads`, `.reads.is-index` | home, `/writing/` |
 | Project page | `.proj-head`, `.spec`, `.steps` | `/projects/…/` |
-| Article page | `.article`, `.pull` | `/writing/…/` |
+| Article page | `.article`, `.pull`, `.rail` | `/writing/…/` — from 64rem up, a sticky contents rail beside the 34rem measure |
 | Dense colophon | `.ft4` | every page |
 
 All of it is in `src/styles/global.css`, tokens first. There is no second
